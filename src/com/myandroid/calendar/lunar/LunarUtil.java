@@ -2,7 +2,6 @@ package com.myandroid.calendar.lunar;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.text.TextUtils;
 import android.util.Log;
 
 import com.myandroid.calendar.R;
@@ -25,13 +24,11 @@ public class LunarUtil {
     public static final int NORMAL_MONTH = 1;
     public static final int DECREATE_A_LUANR_YEAR = -1;
     public static final int INCREASE_A_LUANR_YEAR = 1;
-    public static final String DELIM = ";";
     public static final float DAY_IN_MILLIS = 86400000.0f;
 
     ///M: these strings are inited in constructor @{
     private final String[] mMonthNumberArray;
     private final String[] mTensPrefixArray;
-    private final String mLunarDateFormatterString;
     private final String mLunarTextLeap;
     private final String mLunarTextTensDay;
     private final String mLunarTextTwentithDay;
@@ -41,120 +38,23 @@ public class LunarUtil {
     private final String mLunarTextDay;
 
     private final String[] mSolarTermNamesArray;
-    private final String mLunarFestCHUNJIE;
-    private final String mLunarFestDUANWU;
-    private final String mLunarFestZHONGQIU;
-    private final String mLunarFestYUANDAN;
-    private final String mLunarFestLAODONG;
-    private final String mLunarFestGUOQING;
-    private final String mLunarFestYUANXIAO;
-    private final String mLunarFestQIXI;
-    private final String mLunarFestCHONGYANG;
-    private final String mLunarFestQINGNIAN;
-    private final String mLunarFestQINGREN;
-    private final String mLunarFestFUNV;
-    private final String mLunarFestZHISHU;
-    private final String mLunarFestYUREN;
-    private final String mLunarFestERTONG;
-    private final String mLunarFestJIANDANG;
-    private final String mLunarFestJIANJUN;
-    private final String mLunarFestJIAOSHI;
-    private final String mLunarFestSHENGDAN;
+    private final String[] mLunarFestArray;
+    private final String[] mGregFestArray;
     private final String[] mTianGanArray;
     private final String[] mDiZhiArray;
     private final String[] mShengXiaoArray;
     ///@}
-
-    /*Table for SolarTerm from 1970-2050*/
-    private static final int SolarTermTable[][] = {
-        {6, 20, 4, 19, 6, 21, 5, 20, 6, 21, 6, 22, 7, 23, 8, 23, 8, 23, 9, 24, 8, 23, 7, 22},       /* 1970 */        
-        {6, 21, 4, 19, 6, 21, 5, 21, 6, 22, 6, 22, 8, 23, 8, 24, 8, 24, 9, 24, 8, 23, 8, 22},
-        {6, 21, 5, 19, 5, 20, 5, 20, 5, 21, 5, 21, 7, 23, 7, 23, 7, 23, 8, 23, 7, 22, 7, 22},
-        {5, 20, 4, 19, 6, 21, 5, 20, 6, 21, 6, 21, 7, 23, 8, 23, 8, 23, 8, 23, 7, 22, 7, 22},
-        {6, 20, 4, 19, 6, 21, 5, 20, 6, 21, 6, 22, 7, 23, 8, 23, 8, 23, 9, 24, 8, 22, 7, 22},
-        {6, 20, 4, 19, 6, 21, 5, 21, 6, 22, 6, 22, 8, 23, 8, 24, 8, 24, 9, 24, 8, 23, 8, 22},       /* 1975 */
-        {6, 21, 4, 19, 5, 20, 4, 20, 5, 21, 5, 21, 7, 23, 7, 23, 7, 23, 8, 23, 7, 22, 7, 22},
-        {5, 20, 4, 19, 5, 21, 5, 20, 5, 21, 6, 21, 7, 23, 7, 23, 8, 23, 8, 23, 7, 22, 7, 22},
-        {5, 20, 4, 19, 6, 21, 5, 20, 6, 21, 6, 22, 7, 23, 8, 23, 8, 23, 8, 24, 8, 23, 7, 22},
-        {6, 20, 4, 19, 6, 21, 5, 21, 6, 22, 6, 22, 8, 23, 8, 24, 8, 23, 9, 24, 8, 23, 8, 22},
-        {6, 21, 5, 19, 5, 20, 4, 20, 5, 21, 5, 21, 7, 23, 7, 23, 7, 23, 8, 23, 7, 22, 7, 21},        /* 1980 */
-        {5, 20, 4, 19, 5, 21, 5, 20, 5, 21, 6, 21, 7, 23, 7, 23, 8, 23, 8, 23, 7, 22, 7, 22},
-        {5, 20, 5, 19, 6, 21, 5, 20, 6, 21, 6, 22, 7, 23, 8, 23, 8, 23, 8, 24, 8, 22, 7, 22},
-        {6, 20, 4, 19, 6, 21, 5, 20, 6, 21, 6, 22, 8, 23, 8, 24, 8, 23, 9, 24, 8, 23, 7, 22},
-        {6, 21, 5, 19, 5, 20, 4, 20, 5, 21, 5, 21, 7, 23, 7, 23, 7, 23, 8, 23, 7, 22, 7, 21},
-        {5, 20, 4, 19, 5, 20, 5, 20, 5, 21, 6, 21, 7, 23, 7, 23, 8, 23, 8, 23, 7, 22, 7, 22},        /* 1985 */
-        {5, 20, 5, 19, 6, 21, 5, 20, 6, 21, 6, 22, 7, 23, 8, 23, 8, 23, 8, 24, 8, 22, 7, 22},
-        {6, 20, 5, 19, 6, 21, 5, 20, 6, 21, 6, 22, 8, 23, 8, 24, 8, 23, 9, 24, 8, 23, 7, 22},
-        {6, 21, 5, 19, 5, 20, 4, 20, 5, 21, 5, 21, 7, 23, 7, 23, 7, 23, 8, 23, 7, 22, 7, 21},
-        {5, 20, 4, 18, 5, 20, 5, 20, 5, 21, 6, 21, 7, 23, 7, 23, 8, 23, 8, 23, 7, 22, 7, 22},
-        {5, 20, 5, 19, 6, 21, 5, 20, 6, 21, 6, 22, 7, 23, 8, 23, 8, 23, 8, 24, 7, 22, 7, 22},        /* 1990 */
-        {6, 20, 5, 19, 6, 21, 5, 20, 6, 21, 6, 22, 8, 23, 8, 24, 8, 23, 9, 24, 8, 23, 7, 22},
-        {6, 21, 4, 19, 5, 20, 4, 20, 5, 21, 5, 21, 7, 22, 7, 23, 7, 23, 8, 23, 7, 22, 7, 21},
-        {5, 20, 4, 18, 5, 20, 5, 20, 5, 21, 6, 21, 7, 23, 7, 23, 7, 23, 8, 23, 7, 22, 7, 22},
-        {5, 20, 5, 19, 6, 21, 5, 20, 6, 21, 6, 22, 7, 23, 8, 23, 8, 23, 8, 23, 7, 22, 7, 22},
-        {6, 20, 5, 19, 6, 21, 5, 20, 6, 21, 6, 22, 7, 23, 8, 23, 8, 23, 9, 24, 8, 23, 7, 22},        /* 1995 */
-        {6, 21, 5, 19, 5, 20, 4, 20, 5, 21, 5, 21, 7, 22, 7, 23, 7, 23, 8, 23, 7, 22, 7, 21},
-        {5, 20, 4, 18, 5, 20, 5, 20, 5, 21, 6, 21, 7, 23, 7, 23, 7, 23, 8, 23, 7, 22, 7, 22},
-        {5, 20, 5, 19, 6, 21, 5, 20, 6, 21, 6, 21, 7, 23, 8, 23, 8, 23, 8, 23, 7, 22, 7, 22},
-        {6, 20, 5, 19, 6, 21, 5, 20, 6, 21, 6, 22, 7, 23, 8, 23, 8, 23, 9, 24, 8, 23, 7, 22},
-        {6, 21, 4, 19, 5, 20, 4, 20, 5, 21, 5, 21, 7, 22, 7, 23, 7, 23, 8, 23, 7, 22, 7, 21},        /* 2000 */
-        {5, 20, 4, 18, 5, 20, 5, 20, 5, 21, 5, 21, 7, 23, 7, 23, 7, 23, 8, 23, 7, 22, 7, 22},
-        {5, 20, 4, 19, 6, 21, 5, 20, 6, 21, 6, 21, 7, 23, 8, 23, 8, 23, 8, 23, 7, 22, 7, 22},
-        {6, 20, 5, 19, 6, 21, 5, 20, 6, 21, 6, 22, 7, 23, 8, 23, 8, 23, 9, 24, 8, 23, 7, 22},
-        {6, 21, 5, 19, 5, 20, 4, 20, 5, 21, 5, 21, 7, 22, 7, 23, 7, 23, 8, 23, 7, 22, 7, 21},
-        {5, 20, 4, 18, 5, 20, 5, 20, 5, 21, 5, 21, 7, 23, 7, 23, 7, 23, 8, 23, 7, 22, 7, 22},        /* 2005 */
-        {5, 20, 4, 19, 6, 21, 5, 20, 6, 21, 6, 21, 7, 23, 8, 23, 8, 23, 8, 23, 7, 22, 7, 22},
-        {6, 20, 5, 19, 6, 21, 5, 20, 6, 21, 6, 22, 7, 23, 8, 23, 8, 23, 9, 24, 8, 22, 7, 22},
-        {6, 20, 5, 19, 5, 20, 4, 20, 5, 21, 5, 21, 7, 22, 7, 23, 7, 23, 8, 23, 7, 22, 7, 21},
-        {5, 20, 4, 18, 5, 20, 4, 20, 5, 21, 5, 21, 7, 23, 7, 23, 7, 23, 8, 23, 7, 22, 7, 22},
-        {5, 20, 4, 19, 6, 21, 5, 20, 5, 21, 6, 20, 7, 23, 7, 23, 8, 23, 8, 23, 7, 22, 7, 22},        /* 2010 */
-        {6, 20, 4, 19, 6, 21, 5, 20, 6, 21, 6, 22, 7, 23, 8, 23, 8, 23, 8, 24, 8, 22, 7, 22},
-        {6, 20, 4, 19, 5, 20, 4, 20, 5, 21, 5, 21, 7, 22, 7, 23, 7, 22, 8, 23, 7, 22, 6, 21},
-        {5, 20, 4, 18, 5, 20, 4, 20, 5, 21, 5, 21, 7, 23, 7, 23, 7, 23, 8, 23, 7, 22, 7, 22},
-        {5, 20, 4, 19, 5, 21, 5, 20, 5, 21, 6, 21, 7, 23, 7, 23, 8, 23, 8, 23, 7, 22, 7, 22},
-        {6, 20, 4, 19, 6, 21, 5, 20, 6, 21, 6, 22, 7, 23, 8, 23, 8, 23, 8, 24, 8, 22, 7, 22},        /* 2015 */
-        {6, 20, 5, 19, 5, 20, 4, 19, 5, 20, 5, 21, 7, 22, 7, 23, 7, 22, 8, 23, 7, 22, 6, 21},
-        {5, 20, 4, 18, 5, 20, 4, 20, 5, 21, 5, 21, 7, 23, 7, 23, 7, 23, 8, 23, 7, 22, 7, 21},
-        {5, 20, 4, 18, 5, 20, 5, 20, 5, 21, 6, 21, 7, 23, 7, 23, 8, 23, 8, 23, 7, 22, 7, 22},
-        {5, 20, 4, 19, 6, 21, 5, 20, 6, 21, 6, 22, 7, 23, 8, 23, 8, 23, 8, 24, 8, 22, 7, 22},
-        {6, 20, 5, 19, 5, 20, 4, 19, 5, 20, 5, 21, 7, 22, 7, 23, 7, 22, 8, 23, 7, 22, 6, 21},        /* 2020 */
-        {5, 20, 4, 18, 5, 20, 4, 20, 5, 21, 5, 21, 7, 22, 7, 23, 7, 23, 8, 23, 7, 22, 7, 21},
-        {5, 20, 4, 18, 5, 20, 5, 20, 5, 21, 6, 21, 7, 23, 7, 23, 8, 23, 8, 23, 7, 22, 7, 22},
-        {5, 20, 5, 19, 6, 21, 5, 20, 6, 21, 6, 22, 7, 23, 8, 23, 8, 23, 8, 23, 7, 22, 7, 22},
-        {6, 20, 5, 19, 5, 20, 4, 19, 5, 20, 5, 21, 6, 22, 7, 23, 7, 22, 8, 23, 7, 22, 6, 21},
-        {5, 20, 4, 18, 5, 20, 4, 20, 5, 21, 5, 21, 7, 22, 7, 23, 7, 23, 8, 23, 7, 22, 7, 21},        /* 2025 */
-        {5, 20, 4, 18, 5, 20, 5, 20, 5, 21, 6, 21, 7, 23, 7, 23, 7, 23, 8, 23, 7, 22, 7, 22},
-        {5, 20, 5, 19, 6, 21, 5, 20, 6, 21, 6, 21, 7, 23, 8, 23, 8, 23, 8, 23, 7, 22, 7, 22},
-        {6, 20, 5, 19, 5, 20, 4, 19, 5, 20, 5, 21, 6, 22, 7, 22, 7, 22, 8, 23, 7, 22, 6, 21},
-        {5, 20, 4, 18, 5, 20, 4, 20, 5, 21, 5, 21, 7, 22, 7, 23, 7, 23, 8, 23, 7, 22, 7, 21},
-        {5, 20, 4, 18, 5, 20, 5, 20, 5, 21, 6, 21, 7, 23, 7, 23, 7, 23, 8, 23, 7, 22, 7, 22},        /* 2030 */
-        {5, 20, 5, 19, 6, 21, 5, 20, 6, 21, 6, 21, 7, 23, 8, 23, 8, 23, 8, 23, 7, 22, 7, 22},        
-        {6, 20, 5, 19, 5, 20, 4, 19, 5, 20, 5, 21, 6, 22, 7, 22, 7, 22, 8, 23, 7, 22, 6, 21},        
-        {5, 20, 4, 18, 5, 20, 4, 20, 5, 21, 5, 21, 7, 22, 7, 23, 7, 23, 8, 23, 7, 22, 7, 21},        
-        {5, 20, 4, 18, 5, 20, 5, 20, 5, 21, 5, 21, 7, 23, 7, 23, 7, 23, 8, 23, 7, 22, 7, 22},        
-        {5, 20, 4, 19, 6, 21, 5, 20, 6, 21, 6, 21, 7, 23, 8, 23, 8, 23, 8, 23, 7, 22, 7, 22},        /* 2035 */
-        {6, 20, 5, 19, 5, 20, 4, 19, 5, 20, 5, 21, 6, 22, 7, 22, 7, 22, 8, 23, 7, 22, 6, 21},        
-        {5, 20, 4, 18, 5, 20, 4, 20, 5, 21, 5, 21, 7, 22, 7, 23, 7, 23, 8, 23, 7, 22, 7, 21},        
-        {5, 20, 4, 18, 5, 20, 5, 20, 5, 21, 5, 21, 7, 23, 7, 23, 7, 23, 8, 23, 7, 22, 7, 22},        
-        {5, 20, 4, 19, 6, 21, 5, 20, 5, 21, 6, 21, 7, 23, 8, 23, 8, 23, 8, 23, 7, 22, 7, 22},        
-        {5, 20, 5, 19, 5, 20, 4, 19, 5, 20, 5, 21, 6, 22, 7, 22, 7, 22, 7, 23, 7, 21, 6, 21},        /* 2040 */
-        {5, 19, 4, 18, 5, 20, 4, 20, 5, 21, 5, 21, 7, 22, 7, 23, 7, 22, 8, 23, 7, 22, 7, 21},        
-        {5, 20, 4, 18, 5, 20, 4, 20, 5, 21, 5, 21, 7, 23, 7, 23, 7, 23, 8, 23, 7, 22, 7, 22},        
-        {5, 20, 4, 19, 5, 21, 5, 20, 5, 21, 6, 21, 7, 23, 8, 23, 8, 23, 8, 23, 7, 22, 7, 22},        
-        {5, 20, 5, 19, 5, 20, 4, 19, 5, 20, 5, 21, 6, 22, 7, 22, 7, 22, 7, 23, 7, 21, 6, 21},        
-        {5, 19, 4, 18, 5, 20, 4, 20, 5, 21, 5, 21, 7, 22, 7, 23, 7, 22, 8, 23, 7, 22, 6, 21},        /* 2045 */
-        {5, 20, 4, 18, 5, 20, 4, 20, 5, 21, 5, 21, 7, 23, 7, 23, 7, 23, 8, 23, 7, 22, 7, 21},        
-        {5, 20, 4, 19, 5, 21, 5, 20, 5, 21, 6, 21, 7, 23, 7, 23, 8, 23, 8, 23, 7, 22, 7, 22},        
-        {5, 20, 5, 19, 5, 20, 4, 19, 5, 20, 5, 20, 6, 22, 7, 22, 7, 22, 7, 23, 7, 21, 6, 21},        
-        {5, 19, 4, 18, 5, 20, 4, 19, 5, 20, 5, 21, 7, 22, 7, 23, 7, 22, 8, 23, 7, 22, 6, 21},        
-        {5, 20, 3, 18, 5, 20, 4, 20, 5, 21, 5, 21, 7, 23, 7, 23, 7, 23, 8, 23, 7, 22, 7, 21},        /* 2050 */
-    };
 
     /**
      * Lunar info consts, for calculating leap month.
      */
     private final int[] mLunarInfoArray;
 
+    /**
+     * All days have solar term form 1970.1 to 1936.12
+     * Line represents on year.
+     */
+    private final int[] mSolarTermDays;
     static SimpleDateFormat sChineseDateFormat;
     private Date mBaseDate;
 
@@ -212,7 +112,7 @@ public class LunarUtil {
             Log.e(TAG, "get leapMonth:" + lunarYear + "is out of range.return 0.");
             return 0;
         }
-        return (int) (mLunarInfoArray[lunarYear - 1900] & 0xf);
+        return mLunarInfoArray[lunarYear - 1900] & 0xf;
     }
 
 
@@ -271,15 +171,15 @@ public class LunarUtil {
             Log.e(TAG, "parse baseDate error.");
             e.printStackTrace();
         }
-        return null;
+        return mBaseDate;
     }
 
     /**
      * return  the LunarDate Date corresponding  with the Gregorian Date
      * 
-     * @param gregorianYear
-     * @param gregorianMonth
-     * @param gregorianDay
+     * @param gregorianYear gregorian year
+     * @param gregorianMonth gregorian month
+     * @param gregorianDay gregorian day
      * @return int[4],int[0] is luanrYear,int[1] is luanrMonth (index base 1),int[2] is luanrDay
      * int[3] represent is  current month leap month,if is leap month,will return LEARP_MONTH,
      * else return NORMAL_MONTH
@@ -415,10 +315,10 @@ public class LunarUtil {
     
     /**
      * get the lunar date string,like xx年[闰]xx月初xx
-     * 
-     * @param gregorianYear
-     * @param gregorianMonth
-     * @param gregorianDay
+     *
+     * @param gregorianYear gregorian year
+     * @param gregorianMonth gregorian month
+     * @param gregorianDay gregorian day
      * @return the lunar date string like:xx年[闰]xx月初xx
      */
     public String getLunarDateString(int gregorianYear, int gregorianMonth,int gregorianDay) {
@@ -428,9 +328,9 @@ public class LunarUtil {
     
     /**
      * The really function produce lunar date string.
-     * @param lunarYear
-     * @param lunarMonth
-     * @param lunarDay 
+     * @param lunarYear lunar year
+     * @param lunarMonth lunar month
+     * @param lunarDay lunar day
      * @param leapMonthCode  LEAP_MONTH or NORMAL_MONTH
      * @return the lunar date string like:xx年[闰]xx月初xx
      */
@@ -443,6 +343,12 @@ public class LunarUtil {
         return luanrDateString;
     }
 
+    /**
+     * @param gregorianYear gregorian year
+     * @param gregorianMonth gregorian month
+     * @param gregorianDay gregorian day
+     * @return the lunar date string like:[闰]xx月初xx
+     */
     public String getLunarDateNoYearString(int gregorianYear, int gregorianMonth,int gregorianDay) {
         int lunarDate[] = calculateLunarByGregorian(gregorianYear, gregorianMonth, gregorianDay);
         String luanrDateString =
@@ -451,26 +357,30 @@ public class LunarUtil {
         return luanrDateString;
     }
 
-    public String getFullLunarDateString(Context c, int gregorianYear, int gregorianMonth,int gregorianDay) {
+    /**
+     * @param gregorianYear gregorian year
+     * @param gregorianMonth gregorian month
+     * @param gregorianDay gregorian day
+     * @return the lunar date string like:xxx年[闰]xx月初xx
+     */
+    public String getFullLunarDateString(int gregorianYear, int gregorianMonth,int gregorianDay) {
         int lunarDate[] = calculateLunarByGregorian(gregorianYear, gregorianMonth, gregorianDay);
-        String ganzhi = getYearGanzhi(c, lunarDate[0]);
-        String animal = AnimalsYear(c, lunarDate[0]);
-        String luanrDateString = ganzhi + animal + mLunarTextYear
+        String ganzhi = getYearGanzhi(lunarDate[0]);
+        String animal = getAnimalsYear(lunarDate[0]);
+        return ganzhi + animal + mLunarTextYear
                 + (lunarDate[3] == LEAP_MONTH ? mLunarTextLeap : "")
                 + mMonthNumberArray[lunarDate[1] - 1] + mLunarTextMonth + getLunarDayString(lunarDate[2]);
-        return luanrDateString;
     }
 
-    public String getYearGanzhi(Context context, int y) {
+    public String getYearGanzhi(int y) {
         int num = y - 1900 + 36;
-        return (cyclicalm(context, num));
+        return (cyclicalm(num));
     }
 
     /*
      * return the GanZhi text from number , 0 return JiaZi
      */
-    private String cyclicalm(Context context, int num) {
-
+    private String cyclicalm(int num) {
         return (mTianGanArray[num % 10] + mDiZhiArray[num % 12]);
     }
 
@@ -478,7 +388,7 @@ public class LunarUtil {
      * @param y year
      * @return the ShengXiao Text
      */
-    public String AnimalsYear(Context context, int y) {
+    public String getAnimalsYear(int y) {
 
         return mShengXiaoArray[(y - 4) % 12];
     }
@@ -488,7 +398,7 @@ public class LunarUtil {
      * @param calendar The Gregorian date to be decrease or increase.
      * @param lunarMonth decrease or increase  happed in which lunar month.(ignore leap month)
      * @param lunarDay decrease or increase happed in which lunar day.
-     * @param operatorType 
+     * @param operatorType INCREASE_A_LUANR_YEAR or DECREATE_A_LUANR_YEAR
      * @return The Gregorian date that has been decreaseed or increased a lunar year's time
      */
     public Calendar decreaseOrIncreaseALunarYear(Calendar calendar, int lunarMonth, int lunarDay,
@@ -529,7 +439,7 @@ public class LunarUtil {
      * @param gregorianMonth the Gregorian month
      * @param gregorianDay the Gregorian day
      * @return The two days which have solar term in xx year  xx month
-     * @return null if the day is not the solar term, otherwise return the solar term name.
+     * return null if the day is not the solar term, otherwise return the solar term name.
      */
     public String getSolarTerm(int gregorianYear, int gregorianMonth, int gregorianDay) {
         
@@ -557,9 +467,9 @@ public class LunarUtil {
         int firstSolarTermIndex = (gregorianMonth - 1) * 2;
         int days[] = { 0, 0 };
 
-        if (gregorianYear > 1969 && gregorianYear < 2051) {
-            int firstSolarTermDay = SolarTermTable[gregorianYear - 1970][firstSolarTermIndex];
-            int secondSolarTermDay = SolarTermTable[gregorianYear - 1970][firstSolarTermIndex + 1];
+        if (gregorianYear > 1969 && gregorianYear < 2037) {
+            int firstSolarTermDay = mSolarTermDays[(gregorianYear - 1970) * 24 + firstSolarTermIndex];
+            int secondSolarTermDay = mSolarTermDays[(gregorianYear - 1970) * 24 + firstSolarTermIndex + 1];
             days[0] = firstSolarTermDay;
             days[1] = secondSolarTermDay;
         }
@@ -571,65 +481,34 @@ public class LunarUtil {
      * @return The two solar term names in xx month,failed will return {"",""}
      */
     private String[] getAMonthSolarTermNames(int gregorianMonth) {
+        String solarTerms[] = {"",""};
         if (gregorianMonth < 1 || gregorianMonth > 12) {
             Log.e(TAG, "getAMonthSolarTermNames(),param gregorianMonth:" + gregorianMonth + " is error");
-            String solarTerms[] = {"",""};
             return solarTerms;
         }
         int firstSolarTermIndex = gregorianMonth * 2 - 1;
-        return new String[] {
-                getSolarTermNameByIndex(firstSolarTermIndex),
-                getSolarTermNameByIndex(firstSolarTermIndex + 1) };
+        solarTerms[0] = getSolarTermNameByIndex(firstSolarTermIndex);
+        solarTerms[1] = getSolarTermNameByIndex(firstSolarTermIndex + 1);
+        return solarTerms;
     }
    
     /**
-     * Change given year.month.day to Chinese string.
-     * in this method, the Lunar state is force updated to the 
-     * transfered lunar date.
-     * @param gregorianYear
-     * @param gregorianMonth
-     * @param gregorianDay
+     * get lunar day string like:初一
+     * @param lunarMonth lunar month
+     * @param lunarDay lunar day
+     * @param leapMonth is leap month
      * @return lunar string
      */
-    public String getLunarChineseString(int gregorianYear, int gregorianMonth, int gregorianDay) {
-        int lunarDate[] = calculateLunarByGregorian(gregorianYear, gregorianMonth, gregorianDay);
-        boolean isLeapMonth = lunarDate[3] == LEAP_MONTH ? true : false;
-        return getLunarNumber(lunarDate[1],lunarDate[2],isLeapMonth);
-    }
-
-    /**
-     * Change given year.month.day to Chinese string. Festival, SolarTerm.
-     * in this method, the Lunar state is force updated to the 
-     * transfered lunar date.
-     * @param gregorianYear
-     * @param gregorianMonth
-     * @param gregorianDay
-     * @return lunar festival string split by DELIM
-     */
-    public String getLunarFestivalChineseString(int gregorianYear, int gregorianMonth, int gregorianDay) {
-        StringBuilder chineseStringBuilder = new StringBuilder();
-        String chineseString = null;
-        
-        chineseString = getGregFestival(gregorianMonth, gregorianDay);
-        if (!TextUtils.isEmpty(chineseString)) {
-            chineseStringBuilder.append(chineseString).append(DELIM);
-        }
-        int lunarDate[] = calculateLunarByGregorian(gregorianYear, gregorianMonth, gregorianDay);
-        //Log.e(TAG, gregorianYear+"-"+gregorianMonth+"-"+gregorianDay+" -> "+lunarDate[0]+"-"+lunarDate[1]+"-"+lunarDate[2]+" "+lunarDate[3]);
-        chineseString = getLunarFestival(lunarDate[1], lunarDate[2], lunarDate[3]);
-        if (!TextUtils.isEmpty(chineseString)) {
-            chineseStringBuilder.append(chineseString).append(DELIM);
-        }
-        chineseString = getSolarTerm(gregorianYear, gregorianMonth, gregorianDay);
-        if (!TextUtils.isEmpty(chineseString)) {
-            chineseStringBuilder.append(chineseString).append(DELIM);
-        }
-        return chineseStringBuilder.toString();
+    public String getLunarDayString(int lunarMonth, int lunarDay, int leapMonth) {
+        boolean isLeapMonth = leapMonth == LEAP_MONTH;
+        return getLunarNumber(lunarMonth, lunarDay, isLeapMonth);
     }
 
     /**
      * get the current Lunar day number
-     * @param lunarDay
+     * @param lunarMonth lunar month
+     * @param lunarDay lunar day
+     * @param isLeapMonth is leap month
      * @return the string as the lunar number day.
      */
     private String getLunarNumber(int lunarMonth, int lunarDay, boolean isLeapMonth) {
@@ -661,37 +540,21 @@ public class LunarUtil {
         mLunarTextYear = (String)res.getString(R.string.lunar_year);
         mLunarTextMonth = (String)res.getString(R.string.lunar_month);
         mLunarTextDay = (String)res.getString(R.string.lunar_day);
-        mLunarDateFormatterString = (String)res.getString(R.string.lunar_date_formatter);
-        sChineseDateFormat = new SimpleDateFormat(mLunarDateFormatterString);
+        String lunarDateFormatterString = res.getString(R.string.lunar_date_formatter);
+        sChineseDateFormat = new SimpleDateFormat(lunarDateFormatterString);
 
         mSolarTermNamesArray = res.getStringArray(R.array.sc_solar_terms);
-        mLunarFestCHUNJIE = res.getString(R.string.lunar_fest_chunjie);
-        mLunarFestDUANWU = res.getString(R.string.lunar_fest_duanwu);
-        mLunarFestZHONGQIU = res.getString(R.string.lunar_fest_zhongqiu);
-        mLunarFestYUANDAN = res.getString(R.string.lunar_fest_yuandan);
-        mLunarFestLAODONG = res.getString(R.string.lunar_fest_laodong);
-        mLunarFestGUOQING = res.getString(R.string.lunar_fest_guoqing);
-        mLunarFestYUANXIAO = res.getString(R.string.lunar_fest_yuanxiao);
-        mLunarFestQIXI = res.getString(R.string.lunar_fest_qixi);
-        mLunarFestCHONGYANG = res.getString(R.string.lunar_fest_chongyang);
-        mLunarFestQINGNIAN = res.getString(R.string.lunar_fest_qingnian);
-        mLunarFestQINGREN = res.getString(R.string.lunar_fest_qingren);
-        mLunarFestFUNV = res.getString(R.string.lunar_fest_funv);
-        mLunarFestZHISHU = res.getString(R.string.lunar_fest_zhishu);
-        mLunarFestYUREN = res.getString(R.string.lunar_fest_yuren);
-        mLunarFestERTONG = res.getString(R.string.lunar_fest_ertong);
-        mLunarFestJIANDANG = res.getString(R.string.lunar_fest_jiandang);
-        mLunarFestJIANJUN = res.getString(R.string.lunar_fest_jianjun);
-        mLunarFestJIAOSHI = res.getString(R.string.lunar_fest_jiaoshi);
-        mLunarFestSHENGDAN = res.getString(R.string.lunar_fest_shengdan);
+        mLunarFestArray = res.getStringArray(R.array.lunar_fest_name);
+        mGregFestArray = res.getStringArray(R.array.greg_fest_name);
 
         mLunarInfoArray = res.getIntArray(R.array.lunar_info);
+        mSolarTermDays = res.getIntArray(R.array.solar_term_days);
     }
 
     /**
      * M: judge whether a day is a lunar festival
-     * @param lunarMonth
-     * @param lunarDay
+     * @param lunarMonth lunar month
+     * @param lunarDay lunar day
      * @param lunarMonthType lunar month type, is leap?
      * @return festival text
      */
@@ -701,17 +564,21 @@ public class LunarUtil {
             return null;
         }
         if ((lunarMonth == 1) && (lunarDay == 1)) {
-            return mLunarFestCHUNJIE;
-        } else if ((lunarMonth == 5) && (lunarDay == 5)) {
-            return mLunarFestDUANWU;
-        } else if ((lunarMonth == 8) && (lunarDay == 15)) {
-            return mLunarFestZHONGQIU;
+            return mLunarFestArray[0];
         } else if ((lunarMonth == 1) && (lunarDay == 15)) {
-            return mLunarFestYUANXIAO;
+            return mLunarFestArray[1];
+        } else if ((lunarMonth == 2) && (lunarDay == 2)) {
+            return mLunarFestArray[2];
+        } else if ((lunarMonth == 5) && (lunarDay == 5)) {
+            return mLunarFestArray[3];
         } else if ((lunarMonth == 7) && (lunarDay == 7)) {
-            return mLunarFestQIXI;
+            return mLunarFestArray[4];
+        } else if ((lunarMonth == 8) && (lunarDay == 15)) {
+            return mLunarFestArray[5];
         } else if ((lunarMonth == 9) && (lunarDay == 9)) {
-            return mLunarFestCHONGYANG;
+            return mLunarFestArray[6];
+        } else if ((lunarMonth == 12) && (lunarDay == 8)) {
+            return mLunarFestArray[7];
         }
 
         return null;
@@ -719,7 +586,7 @@ public class LunarUtil {
 
     /**
      * M: get the solar term text
-     * @param index
+     * @param index index
      * @return null if not solar term
      */
     private String getSolarTermNameByIndex(int index) {
@@ -732,52 +599,52 @@ public class LunarUtil {
 
     /**
      * M: if the date is a greg festival, return the text, or null if not
-     * @param gregorianMonth
-     * @param gregorianDay
+     * @param gregorianMonth gregorian month
+     * @param gregorianDay gregorian day
      * @return text or null
      */
     public String getGregFestival(int gregorianMonth, int gregorianDay) {
 
         if ((gregorianMonth == 1) && (gregorianDay == 1)) {
-            return mLunarFestYUANDAN;
-        }
-        if (gregorianMonth == 5) {
-            if (gregorianDay == 1) {
-                return mLunarFestLAODONG;
-            } else if (gregorianDay == 4) {
-                return mLunarFestQINGNIAN;
-            }
-        }
-        if ((gregorianMonth == 10) && (gregorianDay == 1)) {
-            return mLunarFestGUOQING;
+            return mGregFestArray[0];
         }
         if ((gregorianMonth == 2) && (gregorianDay == 14)) {
-            return mLunarFestQINGREN;
+            return mGregFestArray[1];
         }
         if (gregorianMonth == 3) {
             if (gregorianDay == 8) {
-                return mLunarFestFUNV;
+                return mGregFestArray[2];
             } else if (gregorianDay == 12) {
-                return mLunarFestZHISHU;
+                return mGregFestArray[3];
             }
         }
         if ((gregorianMonth == 4) && (gregorianDay == 1)) {
-            return mLunarFestYUREN;
+            return mGregFestArray[4];
+        }
+        if (gregorianMonth == 5) {
+            if (gregorianDay == 1) {
+                return mGregFestArray[5];
+            } else if (gregorianDay == 4) {
+                return mGregFestArray[0];
+            }
         }
         if ((gregorianMonth == 6) && (gregorianDay == 1)) {
-            return mLunarFestERTONG;
+            return mGregFestArray[7];
         }
         if ((gregorianMonth == 7) && (gregorianDay == 1)) {
-            return mLunarFestJIANDANG;
+            return mGregFestArray[8];
         }
         if ((gregorianMonth == 8) && (gregorianDay == 1)) {
-            return mLunarFestJIANJUN;
+            return mGregFestArray[9];
         }
         if ((gregorianMonth == 9) && (gregorianDay) == 10) {
-            return mLunarFestJIAOSHI;
+            return mGregFestArray[10];
+        }
+        if ((gregorianMonth == 10) && (gregorianDay == 1)) {
+            return mGregFestArray[11];
         }
         if ((gregorianMonth == 12) && (gregorianDay == 25)) {
-            return mLunarFestSHENGDAN;
+            return mGregFestArray[12];
         }
         return null;
 

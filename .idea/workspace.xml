@@ -13,7 +13,14 @@
     </shared>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c878afe1-b79e-4637-a1b6-2fb6639a2892" name="Default" comment="" />
+    <list default="true" id="c878afe1-b79e-4637-a1b6-2fb6639a2892" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/myandroid/calendar/lunar/LunarUtil.java" afterPath="$PROJECT_DIR$/src/com/myandroid/calendar/lunar/LunarUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/arrays.xml" afterPath="$PROJECT_DIR$/res/values/arrays.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/lunar_const_arrays.xml" afterPath="$PROJECT_DIR$/res/values/lunar_const_arrays.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="Calendar.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -94,22 +101,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CalendarViewAdapter.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="CalendarViewAdapter.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/myandroid/calendar/CalendarViewAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="184" column="46" selection-start="6592" selection-end="6592" vertical-scroll-proportion="0.33075434" vertical-offset="2717" max-vertical-offset="7657">
+            <state line="192" column="17" selection-start="6911" selection-end="6911" vertical-scroll-proportion="0.0" vertical-offset="2717" max-vertical-offset="7657">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LunarUtil.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="LunarUtil.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/myandroid/calendar/lunar/LunarUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="726" column="50" selection-start="33598" selection-end="33598" vertical-scroll-proportion="0.0" vertical-offset="13733" max-vertical-offset="15390">
+            <state line="331" column="17" selection-start="11917" selection-end="11917" vertical-scroll-proportion="0.15473887" vertical-offset="6209" max-vertical-offset="12863">
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#20682#20726#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="arrays.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/values/arrays.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="479" column="23" selection-start="16176" selection-end="16176" vertical-scroll-proportion="0.0" vertical-offset="9044" max-vertical-offset="9994">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -151,6 +168,9 @@
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="GitLogSettings">
     <option name="myDateState">
       <MyDateState />
@@ -159,7 +179,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/res/layout-sw600dp/agenda_item.xml" />
         <option value="$PROJECT_DIR$/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/src/com/myandroid/calendar/agenda/AgendaByDayAdapter.java" />
         <option value="$PROJECT_DIR$/res/layout/agenda_day.xml" />
@@ -172,8 +191,9 @@
         <option value="$PROJECT_DIR$/res/menu-sw600dp/all_in_one_title_bar.xml" />
         <option value="$PROJECT_DIR$/res/menu-sw600dp-land/all_in_one_title_bar.xml" />
         <option value="$PROJECT_DIR$/src/com/myandroid/calendar/CalendarViewAdapter.java" />
-        <option value="$PROJECT_DIR$/res/values/arrays.xml" />
+        <option value="$PROJECT_DIR$/res/values/lunar_const_arrays.xml" />
         <option value="$PROJECT_DIR$/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/res/values/arrays.xml" />
         <option value="$PROJECT_DIR$/src/com/myandroid/calendar/lunar/LunarUtil.java" />
       </list>
     </option>
@@ -491,7 +511,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1288" height="979" extended-state="7" />
+    <frame x="-4" y="-4" width="1288" height="979" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -666,20 +686,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/arrays.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="493" column="19" selection-start="16508" selection-end="16508" vertical-scroll-proportion="1.2940038" vertical-offset="8698" max-vertical-offset="9519">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="646" column="0" selection-start="37057" selection-end="37057" vertical-scroll-proportion="1.147002" vertical-offset="11681" max-vertical-offset="12958">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/adt-bundle-windows-x86/sdk/sources/android-16/java/util/Date.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="306" column="16" selection-start="9507" selection-end="9507" vertical-scroll-proportion="0.3326886" vertical-offset="5224" max-vertical-offset="14763">
@@ -687,26 +693,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/myandroid/calendar/CalendarViewAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="192" column="17" selection-start="6911" selection-end="6911" vertical-scroll-proportion="0.0" vertical-offset="2717" max-vertical-offset="7657">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/res/values/lunar_const_arrays.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="160" column="24" selection-start="4274" selection-end="4274" vertical-scroll-proportion="0.46226415" vertical-offset="2795" max-vertical-offset="3325">
+        <state line="168" column="34" selection-start="4508" selection-end="4508" vertical-scroll-proportion="0.1754717" vertical-offset="3099" max-vertical-offset="35169">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="647" column="58" selection-start="37140" selection-end="37140" vertical-scroll-proportion="0.7794971" vertical-offset="11890" max-vertical-offset="12597">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/arrays.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="479" column="23" selection-start="16176" selection-end="16176" vertical-scroll-proportion="0.0" vertical-offset="9044" max-vertical-offset="9994">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/myandroid/calendar/lunar/LunarUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="726" column="50" selection-start="33598" selection-end="33598" vertical-scroll-proportion="0.0" vertical-offset="13733" max-vertical-offset="15390">
+        <state line="331" column="17" selection-start="11917" selection-end="11917" vertical-scroll-proportion="0.15473887" vertical-offset="6209" max-vertical-offset="12863">
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#20682#20726#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/myandroid/calendar/CalendarViewAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="184" column="46" selection-start="6592" selection-end="6592" vertical-scroll-proportion="0.33075434" vertical-offset="2717" max-vertical-offset="7657">
-          <folding />
         </state>
       </provider>
     </entry>
