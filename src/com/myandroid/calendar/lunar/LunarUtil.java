@@ -372,6 +372,13 @@ public class LunarUtil {
                 + mMonthNumberArray[lunarDate[1] - 1] + mLunarTextMonth + getLunarDayString(lunarDate[2]);
     }
 
+    public String getLunarYearString(int gregorianYear, int gregorianMonth,int gregorianDay) {
+        int lunarDate[] = calculateLunarByGregorian(gregorianYear, gregorianMonth, gregorianDay);
+        String ganzhi = getYearGanzhi(lunarDate[0]);
+        String animal = getAnimalsYear(lunarDate[0]);
+        return ganzhi + animal + mLunarTextYear;
+    }
+
     public String getYearGanzhi(int y) {
         int num = y - 1900 + 36;
         return (cyclicalm(num));

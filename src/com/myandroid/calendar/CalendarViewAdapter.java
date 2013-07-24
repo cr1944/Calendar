@@ -17,6 +17,7 @@
 package com.myandroid.calendar;
 
 import com.myandroid.calendar.CalendarController.ViewType;
+import com.myandroid.calendar.lunar.LunarUtil;
 
 import android.content.Context;
 import android.os.Handler;
@@ -70,6 +71,7 @@ public class CalendarViewAdapter extends BaseAdapter {
     private long mTodayJulianDay;
 
     private final Context mContext;
+    private LunarUtil mLunarUtil;
     private final Formatter mFormatter;
     private final StringBuilder mStringBuilder;
     private Handler mMidnightHandler = null; // Used to run a time update every midnight
@@ -96,6 +98,7 @@ public class CalendarViewAdapter extends BaseAdapter {
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mStringBuilder = new StringBuilder(50);
         mFormatter = new Formatter(mStringBuilder, Locale.getDefault());
+        mLunarUtil = LunarUtil.getInstance(mContext);
 
         // Sets time specific variables and starts a thread for midnight updates
         if (showDate) {
@@ -181,16 +184,19 @@ public class CalendarViewAdapter extends BaseAdapter {
         switch (mCurrentMainView) {
             case ViewType.DAY:
                 weekDay.setVisibility(View.VISIBLE);
-                weekDay.setText(buildDayOfWeek());
+                if (mLunarUtil.canShowLunar())
+                    weekDay.setText(buildLunarAndDayOfWeek());
+                else
+                    weekDay.setText(buildDayOfWeek());
                 date.setText(buildFullDate());
                 break;
             case ViewType.WEEK:
-                if (Utils.getShowWeekNumber(mContext)) {
-                    weekDay.setVisibility(View.VISIBLE);
-                    weekDay.setText(buildWeekNum());
-                } else {
-                    weekDay.setVisibility(View.GONE);
-                }
+                //if (Utils.getShowWeekNumber(mContext)) {
+                weekDay.setVisibility(View.VISIBLE);
+                weekDay.setText(buildWeekNum());
+                //} else {
+                //    weekDay.setVisibility(View.GONE);
+                //}
                 if (mShowDate) {
                     date.setText(buildMonthYearDate());
                 } else {
@@ -198,7 +204,12 @@ public class CalendarViewAdapter extends BaseAdapter {
                 }
                 break;
             case ViewType.MONTH:
-                weekDay.setVisibility(View.GONE);
+                if (mLunarUtil.canShowLunar()) {
+                    weekDay.setVisibility(View.VISIBLE);
+                    weekDay.setText(buildLunarYear());
+                } else {
+                    weekDay.setVisibility(View.GONE);
+                }
                 date.setText(buildMonthYearDate());
                 break;
             case ViewType.AGENDA:
@@ -207,7 +218,10 @@ public class CalendarViewAdapter extends BaseAdapter {
                     date.setText(mButtonNames [AGENDA_BUTTON_INDEX]);
                 } else {
                     weekDay.setVisibility(View.VISIBLE);
-                    weekDay.setText(buildDayOfWeek());
+                    if (mLunarUtil.canShowLunar())
+                        weekDay.setText(buildLunarAndDayOfWeek());
+                    else
+                        weekDay.setText(buildDayOfWeek());
                     date.setText(buildFullDate());
                 }
                 break;
@@ -312,6 +326,36 @@ public class CalendarViewAdapter extends BaseAdapter {
                     DateUtils.FORMAT_SHOW_WEEKDAY, mTimeZone).toString();
         }
         return dayOfWeek.toUpperCase();
+    }
+
+    private String buildLunarAndDayOfWeek() {
+        Time t = new Time(mTimeZone);
+        t.set(mMilliTime);
+        long julianDay = Time.getJulianDay(mMilliTime,t.gmtoff);
+        StringBuilder sb = new StringBuilder();
+        String dayOfWeek = null;
+        mStringBuilder.setLength(0);
+
+        if (julianDay == mTodayJulianDay) {
+            dayOfWeek = mContext.getString(R.string.agenda_today,
+                    DateUtils.formatDateRange(mContext, mFormatter, mMilliTime, mMilliTime,
+                            DateUtils.FORMAT_SHOW_WEEKDAY, mTimeZone).toString());
+        } else if (julianDay == mTodayJulianDay - 1) {
+            dayOfWeek = mContext.getString(R.string.agenda_yesterday,
+                    DateUtils.formatDateRange(mContext, mFormatter, mMilliTime, mMilliTime,
+                            DateUtils.FORMAT_SHOW_WEEKDAY, mTimeZone).toString());
+        } else if (julianDay == mTodayJulianDay + 1) {
+            dayOfWeek = mContext.getString(R.string.agenda_tomorrow,
+                    DateUtils.formatDateRange(mContext, mFormatter, mMilliTime, mMilliTime,
+                            DateUtils.FORMAT_SHOW_WEEKDAY, mTimeZone).toString());
+        } else {
+            dayOfWeek = DateUtils.formatDateRange(mContext, mFormatter, mMilliTime, mMilliTime,
+                    DateUtils.FORMAT_SHOW_WEEKDAY, mTimeZone).toString();
+        }
+        sb.append(dayOfWeek.toUpperCase());
+        sb.append(' ');
+        sb.append(mLunarUtil.getLunarDateNoYearString(t.year, t.month, t.monthDay));
+        return sb.toString();
     }
 
     // Builds strings with different formats:
@@ -431,5 +475,31 @@ public class CalendarViewAdapter extends BaseAdapter {
         return mContext.getResources().getQuantityString(R.plurals.weekN, week, week);
     }
 
+    private String buildLunarYearAndWeekNum() {
+        Time t = new Time(mTimeZone);
+        t.set(mMilliTime);
+        StringBuilder sb = new StringBuilder();
+        int firstDayOfWeek = Utils.getFirstDayOfWeek(mContext);
+        if (t.weekDay == Time.SUNDAY
+                && (firstDayOfWeek == Time.SUNDAY || firstDayOfWeek == Time.SATURDAY)) {
+            t.monthDay++;
+            t.normalize(true);
+        } else if (t.weekDay == Time.SATURDAY && firstDayOfWeek == Time.SATURDAY) {
+            t.monthDay += 2;
+            t.normalize(true);
+        }
+        int week = t.getWeekNumber();
+        sb.append(mContext.getResources().getQuantityString(R.plurals.weekN, week, week));
+        sb.append(' ');
+        sb.append(mLunarUtil.getLunarYearString(t.year, t.month, t.monthDay));
+        return sb.toString();
+    }
+
+    private String buildLunarYear() {
+        Time t = new Time(mTimeZone);
+        t.set(mMilliTime);
+        t.normalize(true);
+        return mLunarUtil.getLunarYearString(t.year, t.month, t.monthDay);
+    }
 }
 
