@@ -654,6 +654,7 @@ public class DayView extends View implements View.OnCreateContextMenuListener,
     private boolean mCanShowLunar;
     private String[] mLunarString;
     private Time mTempTime;
+    private boolean mIsTablet = false;
 
     public DayView(Context context, CalendarController controller,
             ViewSwitcher viewSwitcher, EventLoader eventLoader, int numDays) {
@@ -678,6 +679,7 @@ public class DayView extends View implements View.OnCreateContextMenuListener,
         HOURS_LEFT_MARGIN = (int) mResources.getDimension(R.dimen.hours_left_margin);
         HOURS_RIGHT_MARGIN = (int) mResources.getDimension(R.dimen.hours_right_margin);
         MULTI_DAY_HEADER_HEIGHT = (int) mResources.getDimension(R.dimen.day_header_height);
+        mIsTablet = mResources.getBoolean(R.bool.tablet_config);
         int eventTextSizeId;
         if (mNumDays == 1) {
             eventTextSizeId = R.dimen.day_view_event_text_size;
@@ -2432,7 +2434,7 @@ public class DayView extends View implements View.OnCreateContextMenuListener,
             }
 
             p.setColor(color);
-            drawDayHeader(dayNames[dayOfWeek], day, cell, canvas, p);
+            drawDayHeader(dayNames[dayOfWeek], day, canvas, p);
         }
         p.setTypeface(null);
     }
@@ -2576,9 +2578,8 @@ public class DayView extends View implements View.OnCreateContextMenuListener,
         p.setAntiAlias(true);
     }
 
-    private void drawDayHeader(String dayStr, int day, int cell, Canvas canvas, Paint p) {
+    private void drawDayHeader(String dayStr, int day, Canvas canvas, Paint p) {
         int dateNum = mFirstVisibleDate + day;
-        int x;
         if (dateNum > mMonthLength) {
             dateNum -= mMonthLength;
         }
@@ -2588,7 +2589,8 @@ public class DayView extends View implements View.OnCreateContextMenuListener,
         // Draw day of the month
         String dateNumStr = String.valueOf(dateNum);
         if (mNumDays > 1) {
-            x = computeDayLeftPosition(day + 1) - DAY_HEADER_RIGHT_MARGIN;
+            float left = computeDayLeftPosition(day);
+            float x = computeDayLeftPosition(day + 1) - DAY_HEADER_RIGHT_MARGIN;
             float y = DAY_HEADER_FONT_SIZE + DAY_HEADER_TOP_MARGIN;
 
             // Draw day of the week
@@ -2596,7 +2598,7 @@ public class DayView extends View implements View.OnCreateContextMenuListener,
             p.setTextSize(DAY_HEADER_FONT_SIZE);
             p.setTypeface(Typeface.DEFAULT);
             canvas.drawText(dayStr, x, y, p);
-            if (mOrientation == Configuration.ORIENTATION_PORTRAIT) {
+            if (mOrientation == Configuration.ORIENTATION_PORTRAIT && !mIsTablet) {
                 float offset = 0;
                 if (mCanShowLunar && mLunarString != null) {
                     y = DAY_HEADER_HEIGHT - DAY_HEADER_BOTTOM_MARGIN;
@@ -2617,20 +2619,26 @@ public class DayView extends View implements View.OnCreateContextMenuListener,
                 }
                 // Draw day of the month
                 p.setTextAlign(Align.LEFT);
-                x = computeDayLeftPosition(day) + DAY_HEADER_LEFT_MARGIN;
+                x = left + DAY_HEADER_LEFT_MARGIN;
                 p.setTextSize(DATE_HEADER_FONT_SIZE);
                 y = DAY_HEADER_HEIGHT - DAY_HEADER_BOTTOM_MARGIN;
                 p.setTypeface(todayIndex == day ? mBold : Typeface.DEFAULT);
                 canvas.drawText(dateNumStr, x, y, p);
             }
 
+            p.setAntiAlias(false);
+            p.setStyle(Style.FILL);
+            p.setColor(mCalendarGridLineInnerHorizontalColor);
+            p.setStrokeWidth(GRID_LINE_INNER_WIDTH);
+            canvas.drawLine(left, 0, left, DAY_HEADER_HEIGHT, p);
+            p.setAntiAlias(true);
         } else {
             float y = ONE_DAY_HEADER_HEIGHT - DAY_HEADER_ONE_DAY_BOTTOM_MARGIN;
             p.setTextAlign(Align.LEFT);
 
 
             // Draw day of the week
-            x = computeDayLeftPosition(day) + DAY_HEADER_ONE_DAY_LEFT_MARGIN;
+            float x = computeDayLeftPosition(day) + DAY_HEADER_ONE_DAY_LEFT_MARGIN;
             p.setTextSize(DAY_HEADER_FONT_SIZE);
             p.setTypeface(Typeface.DEFAULT);
             canvas.drawText(dayStr, x, y, p);
