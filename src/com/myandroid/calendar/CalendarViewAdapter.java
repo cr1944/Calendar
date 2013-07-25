@@ -354,7 +354,7 @@ public class CalendarViewAdapter extends BaseAdapter {
         }
         sb.append(dayOfWeek.toUpperCase());
         sb.append(' ');
-        sb.append(mLunarUtil.getLunarDateNoYearString(t.year, t.month, t.monthDay));
+        sb.append(mLunarUtil.getLunarDateNoYearString(t.year, t.month + 1, t.monthDay));
         return sb.toString();
     }
 
@@ -491,7 +491,7 @@ public class CalendarViewAdapter extends BaseAdapter {
         int week = t.getWeekNumber();
         sb.append(mContext.getResources().getQuantityString(R.plurals.weekN, week, week));
         sb.append(' ');
-        sb.append(mLunarUtil.getLunarYearString(t.year, t.month, t.monthDay));
+        sb.append(mLunarUtil.getLunarYearString(t.year, t.month + 1, t.monthDay));
         return sb.toString();
     }
 
@@ -499,7 +499,7 @@ public class CalendarViewAdapter extends BaseAdapter {
         Time t = new Time(mTimeZone);
         t.set(mMilliTime);
         t.normalize(true);
-        return mLunarUtil.getLunarYearString(t.year, t.month, t.monthDay);
+        return mLunarUtil.getLunarYearString(t.year, t.month + 1, t.monthDay);
     }
 }
 

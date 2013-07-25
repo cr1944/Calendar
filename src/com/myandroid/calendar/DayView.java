@@ -26,6 +26,7 @@ import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.database.Cursor;
@@ -79,6 +80,7 @@ import android.widget.ViewSwitcher;
 
 import com.myandroid.calendar.CalendarController.EventType;
 import com.myandroid.calendar.CalendarController.ViewType;
+import com.myandroid.calendar.lunar.LunarUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -408,8 +410,9 @@ public class DayView extends View implements View.OnCreateContextMenuListener,
     private static int DAY_HEADER_ONE_DAY_LEFT_MARGIN = 0;
     private static int DAY_HEADER_ONE_DAY_RIGHT_MARGIN = 5;
     private static int DAY_HEADER_ONE_DAY_BOTTOM_MARGIN = 6;
-    private static int DAY_HEADER_LEFT_MARGIN = 5;
-    private static int DAY_HEADER_RIGHT_MARGIN = 4;
+    private static int DAY_HEADER_TOP_MARGIN = 1;
+    private static int DAY_HEADER_LEFT_MARGIN = 2;
+    private static int DAY_HEADER_RIGHT_MARGIN = 3;
     private static int DAY_HEADER_BOTTOM_MARGIN = 3;
     private static float DAY_HEADER_FONT_SIZE = 14;
     private static float DATE_HEADER_FONT_SIZE = 32;
@@ -646,11 +649,17 @@ public class DayView extends View implements View.OnCreateContextMenuListener,
     private boolean mTouchExplorationEnabled = false;
     private final String mCreateNewEventString;
     private final String mNewEventHintString;
+    protected int mOrientation = Configuration.ORIENTATION_LANDSCAPE;
+    private LunarUtil mLunarUtil;
+    private boolean mCanShowLunar;
+    private String[] mLunarString;
+    private Time mTempTime;
 
     public DayView(Context context, CalendarController controller,
             ViewSwitcher viewSwitcher, EventLoader eventLoader, int numDays) {
         super(context);
         mContext = context;
+        mOrientation = mContext.getResources().getConfiguration().orientation;
         initAccessibilityVariables();
 
         mResources = context.getResources();
@@ -714,8 +723,9 @@ public class DayView extends View implements View.OnCreateContextMenuListener,
                 MAX_CELL_HEIGHT *= mScale;
                 DEFAULT_CELL_HEIGHT *= mScale;
                 DAY_HEADER_HEIGHT *= mScale;
-                DAY_HEADER_LEFT_MARGIN *= mScale;
+                DAY_HEADER_TOP_MARGIN *= mScale;
                 DAY_HEADER_RIGHT_MARGIN *= mScale;
+                DAY_HEADER_LEFT_MARGIN *= mScale;
                 DAY_HEADER_ONE_DAY_LEFT_MARGIN *= mScale;
                 DAY_HEADER_ONE_DAY_RIGHT_MARGIN *= mScale;
                 DAY_HEADER_ONE_DAY_BOTTOM_MARGIN *= mScale;
@@ -794,6 +804,8 @@ public class DayView extends View implements View.OnCreateContextMenuListener,
         setOnCreateContextMenuListener(this);
 
         mFirstDayOfWeek = Utils.getFirstDayOfWeek(context);
+        mLunarUtil = LunarUtil.getInstance(context);
+        mCanShowLunar = mLunarUtil.canShowLunar();
 
         mCurrentTime = new Time(Utils.getTimeZone(context, mTZUpdater));
         long currentTime = System.currentTimeMillis();
@@ -857,12 +869,19 @@ public class DayView extends View implements View.OnCreateContextMenuListener,
 
         // Figure out how much space we need for the 3-letter abbrev names
         // in the worst case.
-        p.setTextSize(DATE_HEADER_FONT_SIZE);
-        p.setTypeface(mBold);
-        String[] dateStrs = {" 28", " 30"};
-        mDateStrWidth = computeMaxStringWidth(0, dateStrs, p);
-        p.setTextSize(DAY_HEADER_FONT_SIZE);
-        mDateStrWidth += computeMaxStringWidth(0, mDayStrs, p);
+        if (mOrientation == Configuration.ORIENTATION_PORTRAIT) {
+            p.setTextSize(DATE_HEADER_FONT_SIZE);
+            p.setTypeface(mBold);
+            String[] dateStrs = {" 28", " 30"};
+            mDateStrWidth = computeMaxStringWidth(0, dateStrs, p);
+        } else {
+            p.setTextSize(DATE_HEADER_FONT_SIZE);
+            p.setTypeface(mBold);
+            String[] dateStrs = {" 28", " 30"};
+            mDateStrWidth = computeMaxStringWidth(0, dateStrs, p);
+            p.setTextSize(DAY_HEADER_FONT_SIZE);
+            mDateStrWidth += computeMaxStringWidth(0, mDayStrs, p);
+        }
 
         p.setTextSize(HOURS_TEXT_SIZE);
         p.setTypeface(null);
@@ -1201,6 +1220,19 @@ public class DayView extends View implements View.OnCreateContextMenuListener,
         mMonthLength = mBaseDate.getActualMaximum(Time.MONTH_DAY);
         mFirstVisibleDate = mBaseDate.monthDay;
         mFirstVisibleDayOfWeek = mBaseDate.weekDay;
+        if (mCanShowLunar) {
+            if (mTempTime == null) {
+                mTempTime = new Time(mBaseDate);
+            }
+            if (mLunarString == null) {
+                mLunarString = new String[mNumDays];
+            }
+            for (int i = 0; i < mNumDays; i++) {
+                mTempTime.setJulianDay(mFirstJulianDay + i);
+                mTempTime.normalize(true);
+                mLunarString[i] = mLunarUtil.getLunarDayString(mTempTime.year, mTempTime.month + 1, mTempTime.monthDay);
+            }
+        }
     }
 
     private void adjustToBeginningOfWeek(Time time) {
@@ -2556,21 +2588,42 @@ public class DayView extends View implements View.OnCreateContextMenuListener,
         // Draw day of the month
         String dateNumStr = String.valueOf(dateNum);
         if (mNumDays > 1) {
-            float y = DAY_HEADER_HEIGHT - DAY_HEADER_BOTTOM_MARGIN;
-
-            // Draw day of the month
             x = computeDayLeftPosition(day + 1) - DAY_HEADER_RIGHT_MARGIN;
-            p.setTextAlign(Align.RIGHT);
-            p.setTextSize(DATE_HEADER_FONT_SIZE);
-
-            p.setTypeface(todayIndex == day ? mBold : Typeface.DEFAULT);
-            canvas.drawText(dateNumStr, x, y, p);
+            float y = DAY_HEADER_FONT_SIZE + DAY_HEADER_TOP_MARGIN;
 
             // Draw day of the week
-            x -= p.measureText(" " + dateNumStr);
+            p.setTextAlign(Align.RIGHT);
             p.setTextSize(DAY_HEADER_FONT_SIZE);
             p.setTypeface(Typeface.DEFAULT);
             canvas.drawText(dayStr, x, y, p);
+            if (mOrientation == Configuration.ORIENTATION_PORTRAIT) {
+                float offset = 0;
+                if (mCanShowLunar && mLunarString != null) {
+                    y = DAY_HEADER_HEIGHT - DAY_HEADER_BOTTOM_MARGIN;
+                    p.setTypeface(todayIndex == day ? mBold : Typeface.DEFAULT);
+                    canvas.drawText(mLunarString[day], x, y, p);
+                    offset = DAY_HEADER_FONT_SIZE + DAY_HEADER_BOTTOM_MARGIN;
+                }
+                // Draw day of the month
+                p.setTextSize(DATE_HEADER_FONT_SIZE);
+                y = DAY_HEADER_HEIGHT - DAY_HEADER_BOTTOM_MARGIN - offset;
+                p.setTypeface(todayIndex == day ? mBold : Typeface.DEFAULT);
+                canvas.drawText(dateNumStr, x, y, p);
+            } else {
+                if (mCanShowLunar && mLunarString != null) {
+                    y = DAY_HEADER_HEIGHT - DAY_HEADER_BOTTOM_MARGIN;
+                    p.setTypeface(todayIndex == day ? mBold : Typeface.DEFAULT);
+                    canvas.drawText(mLunarString[day], x, y, p);
+                }
+                // Draw day of the month
+                p.setTextAlign(Align.LEFT);
+                x = computeDayLeftPosition(day) + DAY_HEADER_LEFT_MARGIN;
+                p.setTextSize(DATE_HEADER_FONT_SIZE);
+                y = DAY_HEADER_HEIGHT - DAY_HEADER_BOTTOM_MARGIN;
+                p.setTypeface(todayIndex == day ? mBold : Typeface.DEFAULT);
+                canvas.drawText(dateNumStr, x, y, p);
+            }
+
         } else {
             float y = ONE_DAY_HEADER_HEIGHT - DAY_HEADER_ONE_DAY_BOTTOM_MARGIN;
             p.setTextAlign(Align.LEFT);

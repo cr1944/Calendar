@@ -2,6 +2,7 @@ package com.myandroid.calendar.lunar;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.myandroid.calendar.R;
@@ -506,9 +507,30 @@ public class LunarUtil {
      * @param leapMonth is leap month
      * @return lunar string
      */
-    public String getLunarDayString(int lunarMonth, int lunarDay, int leapMonth) {
+    public String getLunarDayStringFromLunar(int lunarMonth, int lunarDay, int leapMonth) {
         boolean isLeapMonth = leapMonth == LEAP_MONTH;
         return getLunarNumber(lunarMonth, lunarDay, isLeapMonth);
+    }
+
+    public String getLunarDayString(int gregorianYear, int gregorianMonth, int gregorianDay) {
+        StringBuilder chineseStringBuilder = new StringBuilder();
+        String chineseString = null;
+
+        chineseString = getGregFestival(gregorianMonth, gregorianDay);
+        if (!TextUtils.isEmpty(chineseString)) {
+            return chineseString;
+        }
+        int lunarDate[] = calculateLunarByGregorian(gregorianYear, gregorianMonth, gregorianDay);
+        //Log.e(TAG, gregorianYear+"-"+gregorianMonth+"-"+gregorianDay+" -> "+lunarDate[0]+"-"+lunarDate[1]+"-"+lunarDate[2]+" "+lunarDate[3]);
+        chineseString = getLunarFestival(lunarDate[1], lunarDate[2], lunarDate[3]);
+        if (!TextUtils.isEmpty(chineseString)) {
+            return chineseString;
+        }
+        chineseString = getSolarTerm(gregorianYear, gregorianMonth, gregorianDay);
+        if (!TextUtils.isEmpty(chineseString)) {
+            return chineseString;
+        }
+        return getLunarDayStringFromLunar(lunarDate[1], lunarDate[2], lunarDate[3]);
     }
 
     /**
