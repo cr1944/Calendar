@@ -14,6 +14,7 @@
      limitations under the License.
 -->
 <resources>
+    <dimen name="full_month_header_height">20dip</dimen>
     <dimen name="event_info_text_size">18dip</dimen>
     <dimen name="event_info_desc_margin_left">16dip</dimen>
     <dimen name="event_info_desc_margin_right">16dip</dimen>

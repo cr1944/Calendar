@@ -2349,6 +2349,15 @@ public class DayView extends View implements View.OnCreateContextMenuListener,
             int startIndex = -1;
 
             int todayIndex = mTodayJulianDay - mFirstJulianDay;
+            if (0 <= todayIndex && todayIndex < mNumDays) {
+                r.top = 0;
+                r.bottom = DAY_HEADER_HEIGHT;
+                r.left = computeDayLeftPosition(todayIndex) + 1;
+                r.right = computeDayLeftPosition(todayIndex + 1) - 1;
+                p.setColor(mFutureBgColor);
+                p.setStyle(Style.FILL);
+                canvas.drawRect(r, p);
+            }
             if (todayIndex < 0) {
                 // Future
                 startIndex = 0;
@@ -2359,7 +2368,7 @@ public class DayView extends View implements View.OnCreateContextMenuListener,
 
             if (startIndex >= 0) {
                 // Draw the future highlight
-                r.top = 0;
+                r.top = DAY_HEADER_HEIGHT;
                 r.bottom = mFirstCell - 1;
                 r.left = computeDayLeftPosition(startIndex) + 1;
                 r.right = computeDayLeftPosition(mNumDays);
@@ -2590,7 +2599,8 @@ public class DayView extends View implements View.OnCreateContextMenuListener,
         String dateNumStr = String.valueOf(dateNum);
         if (mNumDays > 1) {
             float left = computeDayLeftPosition(day);
-            float x = computeDayLeftPosition(day + 1) - DAY_HEADER_RIGHT_MARGIN;
+            float right = computeDayLeftPosition(day + 1);
+            float x = right - DAY_HEADER_RIGHT_MARGIN;
             float y = DAY_HEADER_FONT_SIZE + DAY_HEADER_TOP_MARGIN;
 
             // Draw day of the week
@@ -2599,7 +2609,10 @@ public class DayView extends View implements View.OnCreateContextMenuListener,
             p.setTypeface(Typeface.DEFAULT);
             canvas.drawText(dayStr, x, y, p);
             if (mOrientation == Configuration.ORIENTATION_PORTRAIT && !mIsTablet) {
+                int width = (mViewWidth - mHoursWidth) / mNumDays;
+                x = left + width / 2;
                 float offset = 0;
+                p.setTextAlign(Align.CENTER);
                 if (mCanShowLunar && mLunarString != null) {
                     y = DAY_HEADER_HEIGHT - DAY_HEADER_BOTTOM_MARGIN;
                     p.setTypeface(todayIndex == day ? mBold : Typeface.DEFAULT);
@@ -2634,6 +2647,10 @@ public class DayView extends View implements View.OnCreateContextMenuListener,
             p.setAntiAlias(true);
         } else {
             float y = ONE_DAY_HEADER_HEIGHT - DAY_HEADER_ONE_DAY_BOTTOM_MARGIN;
+            if (y <= 0) {
+                if (DEBUG) Log.d(TAG, "day header height <= 0, not calling draw.");
+                return;
+            }
             p.setTextAlign(Align.LEFT);
 
 

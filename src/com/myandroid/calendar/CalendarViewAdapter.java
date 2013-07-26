@@ -410,7 +410,7 @@ public class CalendarViewAdapter extends BaseAdapter {
                 mFormatter,
                 mMilliTime,
                 mMilliTime,
-                DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_NO_MONTH_DAY
+                DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_NO_MONTH_DAY | DateUtils.FORMAT_ABBREV_MONTH
                         | DateUtils.FORMAT_SHOW_YEAR, mTimeZone).toString();
         return date;
     }
@@ -418,7 +418,8 @@ public class CalendarViewAdapter extends BaseAdapter {
     private String buildMonthDayDate() {
         mStringBuilder.setLength(0);
         String date = DateUtils.formatDateRange(mContext, mFormatter, mMilliTime, mMilliTime,
-                DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_NO_YEAR, mTimeZone).toString();
+                DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_NO_YEAR | DateUtils.FORMAT_ABBREV_ALL,
+                mTimeZone).toString();
         return date;
     }
 
@@ -429,7 +430,7 @@ public class CalendarViewAdapter extends BaseAdapter {
                 mFormatter,
                 mMilliTime,
                 mMilliTime,
-                DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_NO_YEAR
+                DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_NO_YEAR | DateUtils.FORMAT_ABBREV_MONTH
                         | DateUtils.FORMAT_NO_MONTH_DAY, mTimeZone).toString();
         return date;
     }

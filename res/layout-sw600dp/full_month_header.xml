@@ -17,7 +17,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/full_month_header_height"
     android:background="@color/month_other_bgcolor">
 
     <TextView android:id="@+id/wk_label"

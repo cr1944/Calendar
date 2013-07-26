@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:singleLine="true"
-        android:layout_marginBottom="-10dip"
+        android:layout_marginBottom="-5dip"
         android:textSize="@dimen/action_bar_date_text_size"
         android:textColor="@color/calendar_view_switch_menu_text_color"
         android:gravity="left" />

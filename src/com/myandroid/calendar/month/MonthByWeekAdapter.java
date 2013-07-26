@@ -73,6 +73,7 @@ public class MonthByWeekAdapter extends SimpleWeeksAdapter {
     private static int mTotalClickDelay;
     // Minimal distance to move the finger in order to cancel the click animation
     private static float mMovedPixelToCancel;
+    private int mMonthHeaderHeight;
 
     public MonthByWeekAdapter(Context context, HashMap<String, Integer> params) {
         super(context, params);
@@ -84,6 +85,7 @@ public class MonthByWeekAdapter extends SimpleWeeksAdapter {
         mOnDownDelay = ViewConfiguration.getTapTimeout();
         mMovedPixelToCancel = vc.getScaledTouchSlop();
         mTotalClickDelay = mOnDownDelay + mOnTapDelay;
+        mMonthHeaderHeight = context.getResources().getDimensionPixelSize(R.dimen.full_month_header_height);
 
     }
 
@@ -226,7 +228,7 @@ public class MonthByWeekAdapter extends SimpleWeeksAdapter {
         }
 
         drawingParams.put(SimpleWeekView.VIEW_PARAMS_HEIGHT,
-                (parent.getHeight() + parent.getTop()) / mNumWeeks);
+                (parent.getHeight() + parent.getTop() - mMonthHeaderHeight) / mNumWeeks);
         drawingParams.put(SimpleWeekView.VIEW_PARAMS_SELECTED_DAY, selectedDay);
         drawingParams.put(SimpleWeekView.VIEW_PARAMS_SHOW_WK_NUM, mShowWeekNumber ? 1 : 0);
         drawingParams.put(SimpleWeekView.VIEW_PARAMS_WEEK_START, mFirstDayOfWeek);

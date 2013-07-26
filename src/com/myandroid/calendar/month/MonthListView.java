@@ -21,6 +21,7 @@ import android.graphics.Rect;
 import android.os.SystemClock;
 import android.text.format.Time;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
@@ -39,7 +40,7 @@ public class MonthListView extends ListView {
     // fling. Above MULTIPLE_MONTH_VELOCITY_THRESHOLD, do multiple month flings according to the
     // fling strength. When doing multiple month fling, the velocity is reduced by this threshold
     // to prevent moving from one month fling to 4 months and above flings.
-    private static int MIN_VELOCITY_FOR_FLING = 1500;
+    private static int MIN_VELOCITY_FOR_FLING = 1;
     private static int MULTIPLE_MONTH_VELOCITY_THRESHOLD = 2000;
     private static int FLING_VELOCITY_DIVIDER = 500;
     private static int FLING_TIME = 1000;
