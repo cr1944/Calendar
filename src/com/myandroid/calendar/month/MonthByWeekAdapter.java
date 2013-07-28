@@ -236,6 +236,7 @@ public class MonthByWeekAdapter extends SimpleWeeksAdapter {
         drawingParams.put(SimpleWeekView.VIEW_PARAMS_WEEK, position);
         drawingParams.put(SimpleWeekView.VIEW_PARAMS_FOCUS_MONTH, mFocusMonth);
         drawingParams.put(MonthWeekEventsView.VIEW_PARAMS_ORIENTATION, mOrientation);
+        drawingParams.put(SimpleWeekView.VIEW_PARAMS_SHOW_LUNAR, mShowLunar ? 1 : 0);
 
         if (isAnimatingToday) {
             drawingParams.put(MonthWeekEventsView.VIEW_PARAMS_ANIMATE_TODAY, 1);

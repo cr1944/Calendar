@@ -61,6 +61,7 @@ public class SimpleWeeksAdapter extends BaseAdapter implements OnTouchListener {
      * Whether the week number should be shown. Non-zero to show them.
      */
     public static final String WEEK_PARAMS_SHOW_WEEK = "week_numbers";
+    public static final String WEEK_PARAMS_SHOW_LUNAR = "lunar";
     /**
      * Which day the week should start on. {@link Time#SUNDAY} through
      * {@link Time#SATURDAY}.
@@ -92,6 +93,7 @@ public class SimpleWeeksAdapter extends BaseAdapter implements OnTouchListener {
     // When the week starts; numbered like Time.<WEEKDAY> (e.g. SUNDAY=0).
     protected int mFirstDayOfWeek;
     protected boolean mShowWeekNumber = false;
+    protected boolean mShowLunar = false;
     protected GestureDetector mGestureDetector;
     protected int mNumWeeks = DEFAULT_NUM_WEEKS;
     protected int mDaysPerWeek = DEFAULT_DAYS_PER_WEEK;
@@ -142,6 +144,9 @@ public class SimpleWeeksAdapter extends BaseAdapter implements OnTouchListener {
         }
         if (params.containsKey(WEEK_PARAMS_SHOW_WEEK)) {
             mShowWeekNumber = params.get(WEEK_PARAMS_SHOW_WEEK) != 0;
+        }
+        if (params.containsKey(WEEK_PARAMS_SHOW_LUNAR)) {
+            mShowLunar = params.get(WEEK_PARAMS_SHOW_LUNAR) != 0;
         }
         if (params.containsKey(WEEK_PARAMS_WEEK_START)) {
             mFirstDayOfWeek = params.get(WEEK_PARAMS_WEEK_START);

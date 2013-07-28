@@ -39,6 +39,7 @@
     <color name="week_sunday">#ffff4444</color>
     <color name="calendar_future_bg_color">#ffffffff</color>
     <color name="calendar_hour_label">#ff666666</color>
+    <color name="calendar_hour_highlight">#ff222222</color>
     <color name="calendar_ampm_label">#ff999999</color>
     <color name="calendar_hour_background">#ffEEEEEE</color>
 
@@ -73,10 +74,10 @@
 
 
 
-    <color name="month_other_bgcolor">#FFEEEEEE</color>
+    <color name="month_other_bgcolor">#FFEFEFEF</color>
     <color name="month_selected_week_bgcolor">#FFDDDDDD</color>
     <color name="month_today_bgcolor">#FFFFFFFF</color>
-    <color name="month_bgcolor">#FFE5E5E5</color>
+    <color name="month_bgcolor">#FFE0E0E0</color>
 
 
 

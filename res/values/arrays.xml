@@ -504,8 +504,8 @@
     </string-array>
     <string-array name="greg_fest_name" translatable="false">
         <item>元旦</item>
-        <item>妇女节</item>
         <item>情人节</item>
+        <item>妇女节</item>
         <item>植树节</item>
         <item>愚人节</item>
         <item>劳动节</item>

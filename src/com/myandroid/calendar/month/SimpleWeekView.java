@@ -18,6 +18,7 @@ package com.myandroid.calendar.month;
 
 import com.myandroid.calendar.R;
 import com.myandroid.calendar.Utils;
+import com.myandroid.calendar.lunar.LunarUtil;
 
 import android.app.Service;
 import android.content.Context;
@@ -87,6 +88,10 @@ public class SimpleWeekView extends View {
      * If this month should display week numbers. false if 0, true otherwise.
      */
     public static final String VIEW_PARAMS_SHOW_WK_NUM = "show_wk_num";
+    /**
+     * If this month should display lunar info. false if 0, true otherwise.
+     */
+    public static final String VIEW_PARAMS_SHOW_LUNAR = "show_lunar";
 
     protected static int DEFAULT_HEIGHT = 32;
     protected static int MIN_HEIGHT = 10;
@@ -117,6 +122,7 @@ public class SimpleWeekView extends View {
 
     // Cache the number strings so we don't have to recompute them each time
     protected String[] mDayNumbers;
+    protected String[] mLunarString;
     // Quick lookup for checking which days are in the focus month
     protected boolean[] mFocusDay;
     // Quick lookup for checking which days are in an odd month (to set a different background)
@@ -165,9 +171,12 @@ public class SimpleWeekView extends View {
     protected int mDaySeparatorColor;
     protected int mTodayOutlineColor;
     protected int mWeekNumColor;
+    protected LunarUtil mLunarUtil;
+    protected boolean mShowLunar;
 
     public SimpleWeekView(Context context) {
         super(context);
+        mLunarUtil = LunarUtil.getInstance(context);
 
         Resources res = context.getResources();
 
@@ -236,10 +245,19 @@ public class SimpleWeekView extends View {
                 mShowWeekNum = false;
             }
         }
+
+        mShowLunar = false;
+        if (params.containsKey(VIEW_PARAMS_SHOW_LUNAR)) {
+            if (params.get(VIEW_PARAMS_SHOW_LUNAR) != 0) {
+                mShowLunar = true;
+            }
+        }
+
         mNumCells = mShowWeekNum ? mNumDays + 1 : mNumDays;
 
         // Allocate space for caching the day numbers and focus values
         mDayNumbers = new String[mNumCells];
+        mLunarString = new String[mNumCells];
         mFocusDay = new boolean[mNumCells];
         mOddMonth = new boolean[mNumCells];
         mWeek = params.get(VIEW_PARAMS_WEEK);
@@ -296,6 +314,10 @@ public class SimpleWeekView extends View {
             if (time.year == today.year && time.yearDay == today.yearDay) {
                 mHasToday = true;
                 mToday = i;
+            }
+            if (mShowLunar) {
+                String lunar = mLunarUtil.getLunarDayString(time.year, time.month + 1, time.monthDay);
+                mLunarString[i] = lunar;
             }
             mDayNumbers[i] = Integer.toString(time.monthDay++);
             time.normalize(true);

@@ -386,7 +386,7 @@ public class DayView extends View implements View.OnCreateContextMenuListener,
     // The largest a single allDay event will become.
     private static int MAX_HEIGHT_OF_ONE_ALLDAY_EVENT = 34;
 
-    private static int HOURS_TOP_MARGIN = 2;
+    private static int HOURS_TOP_MARGIN = 0;
     private static int HOURS_LEFT_MARGIN = 2;
     private static int HOURS_RIGHT_MARGIN = 4;
     private static int HOURS_MARGIN = HOURS_LEFT_MARGIN + HOURS_RIGHT_MARGIN;
@@ -464,6 +464,7 @@ public class DayView extends View implements View.OnCreateContextMenuListener,
     private static int mBgColor;
     private static int mNewEventHintColor;
     private static int mCalendarHourLabelColor;
+    private static int mCalendarHourHighlightColor;
     private static int mMoreAlldayEventsTextAlpha = MORE_EVENTS_MAX_ALPHA;
 
     private float mAnimationDistance = 0;
@@ -826,6 +827,7 @@ public class DayView extends View implements View.OnCreateContextMenuListener,
         mCalendarGridLineInnerVerticalColor = mResources
                 .getColor(R.color.calendar_grid_line_inner_vertical_color);
         mCalendarHourLabelColor = mResources.getColor(R.color.calendar_hour_label);
+        mCalendarHourHighlightColor = mResources.getColor(R.color.calendar_hour_highlight);
         mPressedColor = mResources.getColor(R.color.pressed);
         mClickedColor = mResources.getColor(R.color.day_event_clicked_background_color);
         mEventTextColor = mResources.getColor(R.color.calendar_event_text_color);
@@ -2574,6 +2576,8 @@ public class DayView extends View implements View.OnCreateContextMenuListener,
 
         for (int i = 0; i < 24; i++) {
             String time = mHourStrs[i];
+            p.setFakeBoldText(i == 12);
+            p.setColor(i == 12 ? mCalendarHourHighlightColor : mCalendarHourLabelColor);
             canvas.drawText(time, HOURS_LEFT_MARGIN, y, p);
             y += mCellHeight + HOUR_GAP;
         }
@@ -2583,7 +2587,7 @@ public class DayView extends View implements View.OnCreateContextMenuListener,
         p.setColor(mCalendarHourLabelColor);
         p.setTextSize(HOURS_TEXT_SIZE);
         p.setTypeface(Typeface.DEFAULT);
-        p.setTextAlign(Paint.Align.RIGHT);
+        p.setTextAlign(Align.RIGHT);
         p.setAntiAlias(true);
     }
 

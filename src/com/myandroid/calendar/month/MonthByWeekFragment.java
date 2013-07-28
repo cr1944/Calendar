@@ -47,6 +47,7 @@ import com.myandroid.calendar.CalendarController.ViewType;
 import com.myandroid.calendar.Event;
 import com.myandroid.calendar.R;
 import com.myandroid.calendar.Utils;
+import com.myandroid.calendar.lunar.LunarUtil;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -90,6 +91,7 @@ public class MonthByWeekFragment extends SimpleDayPickerFragment implements
     private int mEventsLoadingDelay;
     private boolean mShowCalendarControls;
     private boolean mIsDetached;
+    private LunarUtil mLunarUtil;
 
     private final Runnable mTZUpdater = new Runnable() {
         @Override
@@ -243,6 +245,7 @@ public class MonthByWeekFragment extends SimpleDayPickerFragment implements
     protected void setUpAdapter() {
         mFirstDayOfWeek = Utils.getFirstDayOfWeek(mContext);
         mShowWeekNumber = Utils.getShowWeekNumber(mContext);
+        mLunarUtil = LunarUtil.getInstance(mContext);
 
         HashMap<String, Integer> weekParams = new HashMap<String, Integer>();
         weekParams.put(SimpleWeeksAdapter.WEEK_PARAMS_NUM_WEEKS, mNumWeeks);
@@ -252,6 +255,7 @@ public class MonthByWeekFragment extends SimpleDayPickerFragment implements
         weekParams.put(SimpleWeeksAdapter.WEEK_PARAMS_JULIAN_DAY,
                 Time.getJulianDay(mSelectedDay.toMillis(true), mSelectedDay.gmtoff));
         weekParams.put(SimpleWeeksAdapter.WEEK_PARAMS_DAYS_PER_WEEK, mDaysPerWeek);
+        weekParams.put(SimpleWeeksAdapter.WEEK_PARAMS_SHOW_LUNAR, mLunarUtil.canShowLunar() ? 1 : 0);
         if (mAdapter == null) {
             mAdapter = new MonthByWeekAdapter(getActivity(), weekParams);
             mAdapter.registerDataSetObserver(mObserver);

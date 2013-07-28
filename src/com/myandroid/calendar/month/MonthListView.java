@@ -43,12 +43,13 @@ public class MonthListView extends ListView {
     private static int MIN_VELOCITY_FOR_FLING = 1;
     private static int MULTIPLE_MONTH_VELOCITY_THRESHOLD = 2000;
     private static int FLING_VELOCITY_DIVIDER = 500;
-    private static int FLING_TIME = 1000;
+    private static final int FLING_TIME = 1000;
 
     // disposable variable used for time calculations
     protected Time mTempTime;
     private long mDownActionTime;
     private final Rect mFirstViewRect = new Rect();
+    private float mLastMotionY;
 
     Context mListContext;
 
@@ -103,21 +104,28 @@ public class MonthListView extends ListView {
     }
 
     private boolean processEvent (MotionEvent ev) {
-        switch (ev.getAction() & MotionEvent.ACTION_MASK) {
+        final int action = ev.getAction();
+        final float y = ev.getY();
+        switch (action & MotionEvent.ACTION_MASK) {
             // Since doFling sends a cancel, make sure not to process it.
             case MotionEvent.ACTION_CANCEL:
                 return false;
             // Start tracking movement velocity
             case MotionEvent.ACTION_DOWN:
+                mLastMotionY = y;
                 mTracker.clear();
                 mDownActionTime = SystemClock.uptimeMillis();
                 break;
+            case MotionEvent.ACTION_MOVE:
+                mTracker.addMovement(ev);
+                break;
             // Accumulate velocity and do a custom fling when above threshold
             case MotionEvent.ACTION_UP:
+                final float distanceY = y - mLastMotionY;
                 mTracker.addMovement(ev);
                 mTracker.computeCurrentVelocity(1000);    // in pixels per second
                 float vel =  mTracker.getYVelocity ();
-                if (Math.abs(vel) > MIN_VELOCITY_FOR_FLING) {
+                if (distanceY != 0 || vel != 0) {
                     doFling(vel);
                     return true;
                 }

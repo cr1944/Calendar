@@ -64,6 +64,7 @@ public class MonthWeekEventsView extends SimpleWeekView {
 
     /* NOTE: these are not constants, and may be multiplied by a scale factor */
     private static int TEXT_SIZE_MONTH_NUMBER = 32;
+    private static int TEXT_SIZE_LUNAR = 16;
     private static int TEXT_SIZE_EVENT = 12;
     private static int TEXT_SIZE_EVENT_TITLE = 14;
     private static int TEXT_SIZE_MORE_EVENTS = 12;
@@ -90,7 +91,7 @@ public class MonthWeekEventsView extends SimpleWeekView {
     private static int DAY_SEPARATOR_VERTICAL_LENGHT_PORTRAIT = 64;
     private static int MIN_WEEK_WIDTH = 50;
 
-    private static int EVENT_X_OFFSET_LANDSCAPE = 38;
+    private static int EVENT_X_OFFSET_LANDSCAPE = 40;
     private static int EVENT_Y_OFFSET_LANDSCAPE = 8;
     private static int EVENT_Y_OFFSET_PORTRAIT = 7;
     private static int EVENT_SQUARE_WIDTH = 10;
@@ -350,6 +351,7 @@ public class MonthWeekEventsView extends SimpleWeekView {
             mShowDetailsInMonth = Utils.getConfigBool(getContext(), R.bool.show_details_in_month);
             TEXT_SIZE_EVENT_TITLE = resources.getInteger(R.integer.text_size_event_title);
             TEXT_SIZE_MONTH_NUMBER = resources.getInteger(R.integer.text_size_month_number);
+            TEXT_SIZE_LUNAR = resources.getInteger(R.integer.text_size_month_lunar);
             SIDE_PADDING_MONTH_NUMBER = resources.getInteger(R.integer.month_day_number_margin);
             CONFLICT_COLOR = resources.getColor(R.color.month_dna_conflict_time_color);
             EVENT_TEXT_COLOR = resources.getColor(R.color.calendar_event_text_color);
@@ -360,6 +362,7 @@ public class MonthWeekEventsView extends SimpleWeekView {
                 SIDE_PADDING_WEEK_NUMBER *= mScale;
                 SPACING_WEEK_NUMBER *= mScale;
                 TEXT_SIZE_MONTH_NUMBER *= mScale;
+                TEXT_SIZE_LUNAR *= mScale;
                 TEXT_SIZE_EVENT *= mScale;
                 TEXT_SIZE_EVENT_TITLE *= mScale;
                 TEXT_SIZE_MORE_EVENTS *= mScale;
@@ -711,6 +714,18 @@ public class MonthWeekEventsView extends SimpleWeekView {
             }
             x = computeDayLeftPosition(i - offset) - (SIDE_PADDING_MONTH_NUMBER);
             canvas.drawText(mDayNumbers[i], x, y, mMonthNumPaint);
+            if (mShowLunar) {
+                mMonthNumPaint.setTextSize(TEXT_SIZE_LUNAR);
+                if (mShowDetailsInMonth && mOrientation == Configuration.ORIENTATION_PORTRAIT) {
+                    int left = computeDayLeftPosition(i - offset - 1) + (SIDE_PADDING_MONTH_NUMBER);
+                    mMonthNumPaint.setTextAlign(Align.LEFT);
+                    canvas.drawText(mLunarString[i], left, y, mMonthNumPaint);
+                } else {
+                    canvas.drawText(mLunarString[i], x, y + TEXT_SIZE_WEEK_NUM, mMonthNumPaint);
+                }
+                mMonthNumPaint.setTextAlign(Align.RIGHT);
+                mMonthNumPaint.setTextSize(TEXT_SIZE_MONTH_NUMBER);
+            }
             if (isBold) {
                 mMonthNumPaint.setFakeBoldText(isBold = false);
             }
