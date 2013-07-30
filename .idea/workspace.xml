@@ -13,17 +13,7 @@
     </shared>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c878afe1-b79e-4637-a1b6-2fb6639a2892" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/myandroid/calendar/CalendarController.java" afterPath="$PROJECT_DIR$/src/com/myandroid/calendar/CalendarController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/myandroid/calendar/DayView.java" afterPath="$PROJECT_DIR$/src/com/myandroid/calendar/DayView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/myandroid/calendar/month/MonthByWeekAdapter.java" afterPath="$PROJECT_DIR$/src/com/myandroid/calendar/month/MonthByWeekAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/myandroid/calendar/month/MonthListView.java" afterPath="$PROJECT_DIR$/src/com/myandroid/calendar/month/MonthListView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/dimens.xml" afterPath="$PROJECT_DIR$/res/values/dimens.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values-land/dimens.xml" afterPath="$PROJECT_DIR$/res/values-land/dimens.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values-zh-rCN/strings.xml" afterPath="$PROJECT_DIR$/res/values-zh-rCN/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values-zh-rTW/strings.xml" afterPath="$PROJECT_DIR$/res/values-zh-rTW/strings.xml" />
+    <list default="true" id="c878afe1-b79e-4637-a1b6-2fb6639a2892" name="Default" comment="modify">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Calendar.iws" />
@@ -118,7 +108,7 @@
       <file leaf-file-name="MonthByWeekAdapter.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/myandroid/calendar/month/MonthByWeekAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="379" column="0" selection-start="15287" selection-end="15287" vertical-scroll-proportion="0.19769673" vertical-offset="6452" max-vertical-offset="7733">
+            <state line="378" column="5" selection-start="15286" selection-end="15286" vertical-scroll-proportion="0.1612284" vertical-offset="6452" max-vertical-offset="7733">
               <folding>
                 <element signature="e#15692#16002#0" expanded="true" />
                 <element signature="e#15995#15996#0" expanded="true" />
@@ -351,7 +341,7 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="recentsLimit" value="5" />
     <property name="MemberChooser.sorted" value="false" />
-    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
+    <property name="options.lastSelected" value="http.proxy" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="016B7E950E006013" />
     <property name="MemberChooser.copyJavadoc" value="false" />
@@ -539,7 +529,11 @@
       <created>1374753832624</created>
       <updated>1374753832624</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="modify">
+      <created>1375188287160</created>
+      <updated>1375188287160</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -615,7 +609,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="modify day view" />
+    <option name="LAST_COMMIT_MESSAGE" value="modify" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -632,6 +626,7 @@
     <MESSAGE value="update lunar" />
     <MESSAGE value="modify views" />
     <MESSAGE value="modify day view" />
+    <MESSAGE value="modify" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -754,7 +749,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/myandroid/calendar/month/MonthByWeekAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="379" column="0" selection-start="15287" selection-end="15287" vertical-scroll-proportion="0.19769673" vertical-offset="6452" max-vertical-offset="7733">
+        <state line="378" column="5" selection-start="15286" selection-end="15286" vertical-scroll-proportion="0.1612284" vertical-offset="6452" max-vertical-offset="7733">
           <folding>
             <element signature="e#15692#16002#0" expanded="true" />
             <element signature="e#15995#15996#0" expanded="true" />
