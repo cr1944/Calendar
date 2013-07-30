@@ -22,6 +22,7 @@ import static android.provider.CalendarContract.EXTRA_EVENT_ALL_DAY;
 import static android.provider.CalendarContract.Attendees.ATTENDEE_STATUS;
 
 import com.myandroid.calendar.event.EditEventActivity;
+import com.myandroid.calendar.event.SimpleEditEventDialog;
 import com.myandroid.calendar.selectcalendars.SelectVisibleCalendarsActivity;
 
 import android.accounts.Account;
@@ -178,6 +179,7 @@ public class CalendarController {
          * <p>
          * For EventType.CREATE_EVENT:
          * Set to {@link #EXTRA_CREATE_ALL_DAY} for creating an all-day event.
+         * Set to {@link #EXTRA_CREATE_SIMPLE} for show a simple create UI.
          * <p>
          * For EventType.GO_TO:
          * Set to {@link #EXTRA_GOTO_TIME} to go to the specified date/time.
@@ -195,7 +197,7 @@ public class CalendarController {
                 Log.wtf(TAG, "illegal call to isAllDay , wrong event type " + eventType);
                 return false;
             }
-            return ((extraLong & ALL_DAY_MASK) != 0) ? true : false;
+            return (extraLong & ALL_DAY_MASK) != 0;
         }
 
         public  int getResponse() {
@@ -251,6 +253,11 @@ public class CalendarController {
      * an all-day event
      */
     public static final long EXTRA_CREATE_ALL_DAY = 0x10;
+    /**
+     * Pass to the ExtraLong parameter for EventType.CREATE_EVENT to show
+     * a simple create event dialog
+     */
+    public static final long EXTRA_CREATE_SIMPLE = 0x20;
 
     /**
      * Pass to the ExtraLong parameter for EventType.GO_TO to signal the time
@@ -565,8 +572,7 @@ public class CalendarController {
             // Create/View/Edit/Delete Event
             long endTime = (event.endTime == null) ? -1 : event.endTime.toMillis(false);
             if (event.eventType == EventType.CREATE_EVENT) {
-                launchCreateEvent(event.startTime.toMillis(false), endTime,
-                        event.extraLong == EXTRA_CREATE_ALL_DAY);
+                launchCreateEvent(event.startTime.toMillis(false), endTime, event.extraLong);
                 return;
             } else if (event.eventType == EventType.VIEW_EVENT) {
                 launchViewEvent(event.id, event.startTime.toMillis(false), endTime,
@@ -700,14 +706,24 @@ public class CalendarController {
         mContext.startActivity(intent);
     }
 
-    private void launchCreateEvent(long startMillis, long endMillis, boolean allDayEvent) {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setClass(mContext, EditEventActivity.class);
-        intent.putExtra(EXTRA_EVENT_BEGIN_TIME, startMillis);
-        intent.putExtra(EXTRA_EVENT_END_TIME, endMillis);
-        intent.putExtra(EXTRA_EVENT_ALL_DAY, allDayEvent);
-        mEventId = -1;
-        mContext.startActivity(intent);
+    private void launchCreateEvent(long startMillis, long endMillis, long extraLong) {
+        if ((extraLong & EXTRA_CREATE_SIMPLE) != 0) {
+            Intent intent = new Intent();
+            intent.setClass(mContext, SimpleEditEventDialog.class);
+            intent.putExtra(EXTRA_EVENT_BEGIN_TIME, startMillis);
+            intent.putExtra(EXTRA_EVENT_END_TIME, endMillis);
+            intent.putExtra(EXTRA_EVENT_ALL_DAY, (extraLong & EXTRA_CREATE_ALL_DAY) != 0);
+            mEventId = -1;
+            mContext.startActivity(intent);
+        } else {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setClass(mContext, EditEventActivity.class);
+            intent.putExtra(EXTRA_EVENT_BEGIN_TIME, startMillis);
+            intent.putExtra(EXTRA_EVENT_END_TIME, endMillis);
+            intent.putExtra(EXTRA_EVENT_ALL_DAY, (extraLong & EXTRA_CREATE_ALL_DAY) != 0);
+            mEventId = -1;
+            mContext.startActivity(intent);
+        }
     }
 
     public void launchViewEvent(long eventId, long startMillis, long endMillis, int response) {

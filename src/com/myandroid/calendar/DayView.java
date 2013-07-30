@@ -2603,20 +2603,19 @@ public class DayView extends View implements View.OnCreateContextMenuListener,
         String dateNumStr = String.valueOf(dateNum);
         if (mNumDays > 1) {
             float left = computeDayLeftPosition(day);
-            float right = computeDayLeftPosition(day + 1);
-            float x = right - DAY_HEADER_RIGHT_MARGIN;
+            float x;
             float y = DAY_HEADER_FONT_SIZE + DAY_HEADER_TOP_MARGIN;
 
-            // Draw day of the week
-            p.setTextAlign(Align.RIGHT);
-            p.setTextSize(DAY_HEADER_FONT_SIZE);
-            p.setTypeface(Typeface.DEFAULT);
-            canvas.drawText(dayStr, x, y, p);
             if (mOrientation == Configuration.ORIENTATION_PORTRAIT && !mIsTablet) {
                 int width = (mViewWidth - mHoursWidth) / mNumDays;
                 x = left + width / 2;
-                float offset = 0;
+                // Draw day of the week
                 p.setTextAlign(Align.CENTER);
+                p.setTextSize(DAY_HEADER_FONT_SIZE);
+                p.setTypeface(Typeface.DEFAULT);
+                canvas.drawText(dayStr, x, y, p);
+                float offset = 0;
+                // Draw lunar
                 if (mCanShowLunar && mLunarString != null) {
                     y = DAY_HEADER_HEIGHT - DAY_HEADER_BOTTOM_MARGIN;
                     p.setTypeface(todayIndex == day ? mBold : Typeface.DEFAULT);
@@ -2629,6 +2628,13 @@ public class DayView extends View implements View.OnCreateContextMenuListener,
                 p.setTypeface(todayIndex == day ? mBold : Typeface.DEFAULT);
                 canvas.drawText(dateNumStr, x, y, p);
             } else {
+                x = computeDayLeftPosition(day + 1) - DAY_HEADER_RIGHT_MARGIN;
+                // Draw day of the week
+                p.setTextAlign(Align.RIGHT);
+                p.setTextSize(DAY_HEADER_FONT_SIZE);
+                p.setTypeface(Typeface.DEFAULT);
+                canvas.drawText(dayStr, x, y, p);
+                // Draw lunar
                 if (mCanShowLunar && mLunarString != null) {
                     y = DAY_HEADER_HEIGHT - DAY_HEADER_BOTTOM_MARGIN;
                     p.setTypeface(todayIndex == day ? mBold : Typeface.DEFAULT);

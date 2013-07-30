@@ -109,6 +109,11 @@
             </intent-filter>
         </activity-alias>
 
+        <activity android:name=".event.SimpleEditEventDialog"
+                  android:label="@string/new_event_dialog_option"
+                  android:theme="@android:style/Theme.Holo.Light.Dialog" android:excludeFromRecents="true" >
+        </activity>
+
         <activity android:name="GoogleCalendarUriIntentFilter" android:label="@string/app_label"
             android:theme="@android:style/Theme.NoDisplay"
             android:configChanges="orientation|keyboardHidden">

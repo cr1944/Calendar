@@ -25,6 +25,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.widget.ListView;
 
 import com.myandroid.calendar.Utils;
@@ -40,10 +41,11 @@ public class MonthListView extends ListView {
     // fling. Above MULTIPLE_MONTH_VELOCITY_THRESHOLD, do multiple month flings according to the
     // fling strength. When doing multiple month fling, the velocity is reduced by this threshold
     // to prevent moving from one month fling to 4 months and above flings.
-    private static int MIN_VELOCITY_FOR_FLING = 1;
+    //private static int MIN_VELOCITY_FOR_FLING = 1;
     private static int MULTIPLE_MONTH_VELOCITY_THRESHOLD = 2000;
     private static int FLING_VELOCITY_DIVIDER = 500;
     private static final int FLING_TIME = 1000;
+    private static float mMovedPixelToCancel;
 
     // disposable variable used for time calculations
     protected Time mTempTime;
@@ -86,11 +88,13 @@ public class MonthListView extends ListView {
         if (mScale == 0) {
             mScale = c.getResources().getDisplayMetrics().density;
             if (mScale != 1) {
-                MIN_VELOCITY_FOR_FLING *= mScale;
+                //MIN_VELOCITY_FOR_FLING *= mScale;
                 MULTIPLE_MONTH_VELOCITY_THRESHOLD *= mScale;
                 FLING_VELOCITY_DIVIDER *= mScale;
             }
         }
+        ViewConfiguration vc = ViewConfiguration.get(c);
+        mMovedPixelToCancel = vc.getScaledTouchSlop();
     }
 
     @Override
@@ -125,8 +129,11 @@ public class MonthListView extends ListView {
                 mTracker.addMovement(ev);
                 mTracker.computeCurrentVelocity(1000);    // in pixels per second
                 float vel =  mTracker.getYVelocity ();
-                if (distanceY != 0 || vel != 0) {
+                if (Math.abs(vel) >= MULTIPLE_MONTH_VELOCITY_THRESHOLD) {
                     doFling(vel);
+                    return true;
+                } else if (Math.abs(distanceY) > mMovedPixelToCancel) {
+                    doScroll(distanceY);
                     return true;
                 }
                 break;
@@ -148,22 +155,62 @@ public class MonthListView extends ListView {
         // Below the threshold, fling one month. Above the threshold , fling
         // according to the speed of the fling.
         int monthsToJump;
-        if (Math.abs(velocityY) < MULTIPLE_MONTH_VELOCITY_THRESHOLD) {
-            if (velocityY < 0) {
-                monthsToJump = 1;
-            } else {
-                // value here is zero and not -1 since by the time the fling is
-                // detected the list moved back one month.
-                monthsToJump = 0;
-            }
+
+        if (velocityY < 0) {
+            monthsToJump = 1 - (int) ((velocityY + MULTIPLE_MONTH_VELOCITY_THRESHOLD)
+                    / FLING_VELOCITY_DIVIDER);
         } else {
-            if (velocityY < 0) {
-                monthsToJump = 1 - (int) ((velocityY + MULTIPLE_MONTH_VELOCITY_THRESHOLD)
-                        / FLING_VELOCITY_DIVIDER);
-            } else {
-                monthsToJump = -(int) ((velocityY - MULTIPLE_MONTH_VELOCITY_THRESHOLD)
-                        / FLING_VELOCITY_DIVIDER);
-            }
+            monthsToJump = -(int) ((velocityY - MULTIPLE_MONTH_VELOCITY_THRESHOLD)
+                    / FLING_VELOCITY_DIVIDER);
+        }
+
+        // Get the day at the top right corner
+        int day = getUpperRightJulianDay();
+        // Get the day of the first day of the next/previous month
+        // (according to scroll direction)
+        mTempTime.setJulianDay(day);
+        mTempTime.monthDay = 1;
+        mTempTime.month += monthsToJump;
+        long timeInMillis = mTempTime.normalize(false);
+        // Since each view is 7 days, round the target day up to make sure the
+        // scroll will be  at least one view.
+        int scrollToDay = Time.getJulianDay(timeInMillis, mTempTime.gmtoff)
+                + ((monthsToJump > 0) ? 6 : 0);
+
+        // Since all views have the same height, scroll by pixels instead of
+        // "to position".
+        // Compensate for the top view offset from the top.
+        View firstView = getChildAt(0);
+        int firstViewHeight = firstView.getHeight();
+        // Get visible part length
+        firstView.getLocalVisibleRect(mFirstViewRect);
+        int topViewVisiblePart = mFirstViewRect.bottom - mFirstViewRect.top;
+        int viewsToFling = (scrollToDay - day) / 7 - ((monthsToJump <= 0) ? 1 : 0);
+        int offset = (viewsToFling > 0) ? -(firstViewHeight - topViewVisiblePart
+                + SimpleDayPickerFragment.LIST_TOP_OFFSET) : (topViewVisiblePart
+                - SimpleDayPickerFragment.LIST_TOP_OFFSET);
+        // Fling
+        smoothScrollBy(viewsToFling * firstViewHeight + offset, FLING_TIME);
+    }
+
+    // Do a "snap to start of month" fling
+    private void doScroll(float distanceY) {
+
+        // Stop the list-view movement and take over
+        MotionEvent cancelEvent = MotionEvent.obtain(mDownActionTime,  SystemClock.uptimeMillis(),
+                MotionEvent.ACTION_CANCEL, 0, 0, 0);
+        onTouchEvent(cancelEvent);
+
+        // Below the threshold, fling one month. Above the threshold , fling
+        // according to the speed of the fling.
+        int monthsToJump;
+
+        if (distanceY < 0) {
+            monthsToJump = 1;
+        } else {
+            // value here is zero and not -1 since by the time the fling is
+            // detected the list moved back one month.
+            monthsToJump = 0;
         }
 
         // Get the day at the top right corner

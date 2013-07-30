@@ -18,6 +18,7 @@ package com.myandroid.calendar.month;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.os.Vibrator;
 import android.text.format.Time;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -43,6 +44,7 @@ public class MonthByWeekAdapter extends SimpleWeeksAdapter {
     public static final String WEEK_PARAMS_IS_MINI = "mini_month";
     protected static int DEFAULT_QUERY_DAYS = 7 * 8; // 8 weeks
     private static final long ANIMATE_TODAY_TIMEOUT = 1000;
+    private static final long VIBRATE_TIME = 50;
 
     protected CalendarController mController;
     protected String mHomeTimeZone;
@@ -66,11 +68,14 @@ public class MonthByWeekAdapter extends SimpleWeeksAdapter {
     float mClickedXLocation;                // Used to find which day was clicked
     long mClickTime;                        // Used to calculate minimum click animation time
     // Used to insure minimal time for seeing the click animation before switching views
-    private static final int mOnTapDelay = 100;
+    private static final int mOnTapDelay = 30;
     // Minimal time for a down touch action before stating the click animation, this insures that
     // there is no click animation on flings
     private static int mOnDownDelay;
     private static int mTotalClickDelay;
+    private static int mOnLongClickDelay;
+    private Time mClickDay;
+    private Vibrator mVibrator;
     // Minimal distance to move the finger in order to cancel the click animation
     private static float mMovedPixelToCancel;
     private int mMonthHeaderHeight;
@@ -83,9 +88,13 @@ public class MonthByWeekAdapter extends SimpleWeeksAdapter {
         mShowAgendaWithMonth = Utils.getConfigBool(context, R.bool.show_agenda_with_month);
         ViewConfiguration vc = ViewConfiguration.get(context);
         mOnDownDelay = ViewConfiguration.getTapTimeout();
+        mOnLongClickDelay = ViewConfiguration.getLongPressTimeout() + mOnTapDelay;
         mMovedPixelToCancel = vc.getScaledTouchSlop();
         mTotalClickDelay = mOnDownDelay + mOnTapDelay;
         mMonthHeaderHeight = context.getResources().getDimensionPixelSize(R.dimen.full_month_header_height);
+        if (mVibrator == null) {
+            mVibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+        }
 
     }
 
@@ -303,6 +312,13 @@ public class MonthByWeekAdapter extends SimpleWeeksAdapter {
         }
     }
 
+    private void onDayLongClick() {
+        if (mClickDay != null)
+        mController.sendEventRelatedEventWithExtra(
+                mContext, EventType.CREATE_EVENT, -1, mClickDay.toMillis(true), 0, 0, 0,
+                CalendarController.EXTRA_CREATE_SIMPLE, -1);
+    }
+
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
@@ -330,6 +346,7 @@ public class MonthByWeekAdapter extends SimpleWeeksAdapter {
                     mClickedXLocation = event.getX();
                     mClickTime = System.currentTimeMillis();
                     mListView.postDelayed(mDoClick, mOnDownDelay);
+                    mListView.postDelayed(mDoLongClick, mOnLongClickDelay);
                     break;
                 case MotionEvent.ACTION_UP:
                 case MotionEvent.ACTION_SCROLL:
@@ -339,7 +356,7 @@ public class MonthByWeekAdapter extends SimpleWeeksAdapter {
                 case MotionEvent.ACTION_MOVE:
                     // No need to cancel on vertical movement, ACTION_SCROLL will do that.
                     if (Math.abs(event.getX() - mClickedXLocation) > mMovedPixelToCancel) {
-                        clearClickedView((MonthWeekEventsView)v);
+                        clearClickedView((MonthWeekEventsView) v);
                     }
                     break;
                 default:
@@ -363,12 +380,27 @@ public class MonthByWeekAdapter extends SimpleWeeksAdapter {
 
     // Clear the visual cues of the click animation and related running code.
     private void clearClickedView(MonthWeekEventsView v) {
+        mListView.removeCallbacks(mDoLongClick);
         mListView.removeCallbacks(mDoClick);
         synchronized(v) {
             v.clearClickedDay();
         }
+        mClickDay = null;
         mClickedView = null;
     }
+
+    private final Runnable mDoLongClick = new Runnable() {
+        @Override
+        public void run() {
+            if (mVibrator != null) {
+                mVibrator.vibrate(VIBRATE_TIME);
+            }
+            onDayLongClick();
+            if (mClickedView != null) {
+                clearClickedView(mClickedView);
+            }
+        }
+    };
 
     // Perform the tap animation in a runnable to allow a delay before showing the tap color.
     // This is done to prevent a click animation when a fling is done.
@@ -378,8 +410,9 @@ public class MonthByWeekAdapter extends SimpleWeeksAdapter {
             if (mClickedView != null) {
                 synchronized(mClickedView) {
                     mClickedView.setClickedDay(mClickedXLocation);
+                    mClickDay = mClickedView.getDayFromLocation(mClickedXLocation);
                 }
-                mClickedView = null;
+                //mClickedView = null;
                 // This is a workaround , sometimes the top item on the listview doesn't refresh on
                 // invalidate, so this forces a re-draw.
                 mListView.invalidate();
