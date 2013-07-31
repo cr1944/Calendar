@@ -17,6 +17,7 @@
 package com.myandroid.calendar.month;
 
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.app.LoaderManager;
 import android.content.ContentUris;
 import android.content.CursorLoader;
@@ -25,6 +26,8 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.CalendarContract.Attendees;
 import android.provider.CalendarContract.Calendars;
 import android.provider.CalendarContract.Instances;
@@ -47,6 +50,7 @@ import com.myandroid.calendar.CalendarController.ViewType;
 import com.myandroid.calendar.Event;
 import com.myandroid.calendar.R;
 import com.myandroid.calendar.Utils;
+import com.myandroid.calendar.event.CreateEventDialogFragment;
 import com.myandroid.calendar.lunar.LunarUtil;
 
 import java.util.ArrayList;
@@ -92,6 +96,21 @@ public class MonthByWeekFragment extends SimpleDayPickerFragment implements
     private boolean mShowCalendarControls;
     private boolean mIsDetached;
     private LunarUtil mLunarUtil;
+    private CreateEventDialogFragment mEventDialog;
+    private static final String EVENT_DIALOG_TAG = "event_dialog";
+
+    private Handler mEventDialogHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            FragmentManager fm = getFragmentManager();
+            if (fm != null) {
+                Time day = (Time) msg.obj;
+                initEventDialog(fm);
+                mEventDialog.setDay(day);
+                mEventDialog.show(fm, EVENT_DIALOG_TAG);
+            }
+        }
+    };
 
     private final Runnable mTZUpdater = new Runnable() {
         @Override
@@ -143,6 +162,13 @@ public class MonthByWeekFragment extends SimpleDayPickerFragment implements
             }
         }
     };
+
+    private void initEventDialog(FragmentManager fm) {
+        mEventDialog = (CreateEventDialogFragment) fm.findFragmentByTag(EVENT_DIALOG_TAG);
+        if (mEventDialog == null) {
+            mEventDialog = new CreateEventDialogFragment();
+        }
+    }
 
 
     /**
@@ -257,7 +283,7 @@ public class MonthByWeekFragment extends SimpleDayPickerFragment implements
         weekParams.put(SimpleWeeksAdapter.WEEK_PARAMS_DAYS_PER_WEEK, mDaysPerWeek);
         weekParams.put(SimpleWeeksAdapter.WEEK_PARAMS_SHOW_LUNAR, mLunarUtil.canShowLunar() ? 1 : 0);
         if (mAdapter == null) {
-            mAdapter = new MonthByWeekAdapter(getActivity(), weekParams);
+            mAdapter = new MonthByWeekAdapter(getActivity(), weekParams, mEventDialogHandler);
             mAdapter.registerDataSetObserver(mObserver);
         } else {
             mAdapter.updateParams(weekParams);

@@ -214,6 +214,10 @@ public class EditEventHelper {
         }
     }
 
+    public EditEventHelper(Context context) {
+        this(context, null);
+    }
+
     public EditEventHelper(Context context, CalendarEventModel model) {
         mService = new AsyncQueryService(context);
     }

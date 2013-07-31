@@ -18,10 +18,12 @@ package com.myandroid.calendar.month;
 
 import android.content.Context;
 import android.content.res.Configuration;
-import android.os.Vibrator;
+import android.os.Handler;
+import android.os.Message;
 import android.text.format.Time;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -58,12 +60,14 @@ public class MonthByWeekAdapter extends SimpleWeeksAdapter {
 
     protected ArrayList<ArrayList<Event>> mEventDayList = new ArrayList<ArrayList<Event>>();
     protected ArrayList<Event> mEvents = null;
+    private Handler mEventDialogHandler;
 
     private boolean mAnimateToday = false;
     private long mAnimateTime = 0;
 
     MonthWeekEventsView mClickedView;
     MonthWeekEventsView mSingleTapUpView;
+    MonthWeekEventsView mLongClickedView;
 
     float mClickedXLocation;                // Used to find which day was clicked
     long mClickTime;                        // Used to calculate minimum click animation time
@@ -73,28 +77,22 @@ public class MonthByWeekAdapter extends SimpleWeeksAdapter {
     // there is no click animation on flings
     private static int mOnDownDelay;
     private static int mTotalClickDelay;
-    private static int mOnLongClickDelay;
-    private Time mClickDay;
-    private Vibrator mVibrator;
     // Minimal distance to move the finger in order to cancel the click animation
     private static float mMovedPixelToCancel;
     private int mMonthHeaderHeight;
 
-    public MonthByWeekAdapter(Context context, HashMap<String, Integer> params) {
+    public MonthByWeekAdapter(Context context, HashMap<String, Integer> params, Handler handler) {
         super(context, params);
+        mEventDialogHandler = handler;
         if (params.containsKey(WEEK_PARAMS_IS_MINI)) {
             mIsMiniMonth = params.get(WEEK_PARAMS_IS_MINI) != 0;
         }
         mShowAgendaWithMonth = Utils.getConfigBool(context, R.bool.show_agenda_with_month);
         ViewConfiguration vc = ViewConfiguration.get(context);
         mOnDownDelay = ViewConfiguration.getTapTimeout();
-        mOnLongClickDelay = ViewConfiguration.getLongPressTimeout() + mOnTapDelay;
         mMovedPixelToCancel = vc.getScaledTouchSlop();
         mTotalClickDelay = mOnDownDelay + mOnTapDelay;
         mMonthHeaderHeight = context.getResources().getDimensionPixelSize(R.dimen.full_month_header_height);
-        if (mVibrator == null) {
-            mVibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
-        }
 
     }
 
@@ -106,6 +104,7 @@ public class MonthByWeekAdapter extends SimpleWeeksAdapter {
     @Override
     protected void init() {
         super.init();
+        mGestureDetector = new GestureDetector(mContext, new CalendarGestureListener());
         mController = CalendarController.getInstance(mContext);
         mHomeTimeZone = Utils.getTimeZone(mContext, null);
         mSelectedDay.switchTimezone(mHomeTimeZone);
@@ -291,14 +290,8 @@ public class MonthByWeekAdapter extends SimpleWeeksAdapter {
 
     @Override
     protected void onDayTapped(Time day) {
-        day.timezone = mHomeTimeZone;
-        Time currTime = new Time(mHomeTimeZone);
-        currTime.set(mController.getTime());
-        day.hour = currTime.hour;
-        day.minute = currTime.minute;
-        day.allDay = false;
-        day.normalize(true);
-         if (mShowAgendaWithMonth && !mIsMiniMonth) {
+        setDayParameters(day);
+        if (mShowAgendaWithMonth && !mIsMiniMonth) {
             // If agenda view is visible with month view , refresh the views
             // with the selected day's info
             mController.sendEvent(mContext, EventType.GO_TO, day, day, -1,
@@ -312,13 +305,15 @@ public class MonthByWeekAdapter extends SimpleWeeksAdapter {
         }
     }
 
-    private void onDayLongClick() {
-        if (mClickDay != null)
-        mController.sendEventRelatedEventWithExtra(
-                mContext, EventType.CREATE_EVENT, -1, mClickDay.toMillis(true), 0, 0, 0,
-                CalendarController.EXTRA_CREATE_SIMPLE, -1);
+    private void setDayParameters(Time day) {
+        day.timezone = mHomeTimeZone;
+        Time time = new Time(mHomeTimeZone);
+        time.set(mController.getTime());
+        day.hour = time.hour;
+        day.minute = time.minute;
+        day.allDay = false;
+        day.normalize(true);
     }
-
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
@@ -346,7 +341,6 @@ public class MonthByWeekAdapter extends SimpleWeeksAdapter {
                     mClickedXLocation = event.getX();
                     mClickTime = System.currentTimeMillis();
                     mListView.postDelayed(mDoClick, mOnDownDelay);
-                    mListView.postDelayed(mDoLongClick, mOnLongClickDelay);
                     break;
                 case MotionEvent.ACTION_UP:
                 case MotionEvent.ACTION_SCROLL:
@@ -373,6 +367,21 @@ public class MonthByWeekAdapter extends SimpleWeeksAdapter {
      */
     protected class CalendarGestureListener extends GestureDetector.SimpleOnGestureListener {
         @Override
+        public void onLongPress(MotionEvent e) {
+            if (mLongClickedView != null) {
+                Time day = mLongClickedView.getDayFromLocation(mClickedXLocation);
+                if (day != null) {
+                    mLongClickedView.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
+                    Message msg = new Message();
+                    msg.obj = day;
+                    mEventDialogHandler.sendMessage(msg);
+                }
+                mLongClickedView.clearClickedDay();
+                mLongClickedView = null;
+            }
+        }
+
+        @Override
         public boolean onSingleTapUp(MotionEvent e) {
             return true;
         }
@@ -380,27 +389,12 @@ public class MonthByWeekAdapter extends SimpleWeeksAdapter {
 
     // Clear the visual cues of the click animation and related running code.
     private void clearClickedView(MonthWeekEventsView v) {
-        mListView.removeCallbacks(mDoLongClick);
         mListView.removeCallbacks(mDoClick);
         synchronized(v) {
             v.clearClickedDay();
         }
-        mClickDay = null;
         mClickedView = null;
     }
-
-    private final Runnable mDoLongClick = new Runnable() {
-        @Override
-        public void run() {
-            if (mVibrator != null) {
-                mVibrator.vibrate(VIBRATE_TIME);
-            }
-            onDayLongClick();
-            if (mClickedView != null) {
-                clearClickedView(mClickedView);
-            }
-        }
-    };
 
     // Perform the tap animation in a runnable to allow a delay before showing the tap color.
     // This is done to prevent a click animation when a fling is done.
@@ -410,9 +404,9 @@ public class MonthByWeekAdapter extends SimpleWeeksAdapter {
             if (mClickedView != null) {
                 synchronized(mClickedView) {
                     mClickedView.setClickedDay(mClickedXLocation);
-                    mClickDay = mClickedView.getDayFromLocation(mClickedXLocation);
+                    mLongClickedView = mClickedView;
                 }
-                //mClickedView = null;
+                mClickedView = null;
                 // This is a workaround , sometimes the top item on the listview doesn't refresh on
                 // invalidate, so this forces a re-draw.
                 mListView.invalidate();
