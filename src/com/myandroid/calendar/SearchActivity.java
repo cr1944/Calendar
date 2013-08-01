@@ -276,7 +276,7 @@ public class SearchActivity extends Activity implements CalendarController.Event
             case R.id.action_search:
                 return false;
             case R.id.action_settings:
-                mController.sendEvent(this, EventType.LAUNCH_SETTINGS, null, null, 0, 0);
+                mController.launchSettings();
                 return true;
             case android.R.id.home:
                 Utils.returnToCalendarHome(this);
