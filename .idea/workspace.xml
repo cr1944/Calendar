@@ -13,13 +13,10 @@
     </shared>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c878afe1-b79e-4637-a1b6-2fb6639a2892" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/myandroid/calendar/CalendarController.java" afterPath="$PROJECT_DIR$/src/com/myandroid/calendar/CalendarController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/myandroid/calendar/event/EditEventHelper.java" afterPath="$PROJECT_DIR$/src/com/myandroid/calendar/event/EditEventHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/myandroid/calendar/month/MonthByWeekAdapter.java" afterPath="$PROJECT_DIR$/src/com/myandroid/calendar/month/MonthByWeekAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/myandroid/calendar/month/MonthByWeekFragment.java" afterPath="$PROJECT_DIR$/src/com/myandroid/calendar/month/MonthByWeekFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/colors.xml" afterPath="$PROJECT_DIR$/res/values/colors.xml" />
+    <list default="true" id="c878afe1-b79e-4637-a1b6-2fb6639a2892" name="Default" comment="modify">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/myandroid/calendar/event/CreateEventDialogFragment.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/edit_event_simple.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/myandroid/common/Rfc822Validator.java" afterPath="$PROJECT_DIR$/src/com/myandroid/common/Rfc822Validator.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Calendar.iws" />
@@ -38,7 +35,6 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -75,6 +71,7 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -87,7 +84,7 @@
       <file leaf-file-name="DayView.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/myandroid/calendar/DayView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="339" column="7" selection-start="12974" selection-end="12974" vertical-scroll-proportion="0.0" vertical-offset="12353" max-vertical-offset="94601">
+            <state line="339" column="7" selection-start="12974" selection-end="12974" vertical-scroll-proportion="0.0" vertical-offset="6422" max-vertical-offset="96634">
               <folding />
             </state>
           </provider>
@@ -96,11 +93,8 @@
       <file leaf-file-name="MonthByWeekFragment.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/myandroid/calendar/month/MonthByWeekFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="88" column="26" selection-start="3447" selection-end="3447" vertical-scroll-proportion="0.0" vertical-offset="570" max-vertical-offset="8740">
-              <folding>
-                <element signature="e#3900#4276#0" expanded="true" />
-                <element signature="e#4269#4270#0" expanded="true" />
-              </folding>
+            <state line="88" column="26" selection-start="3447" selection-end="3447" vertical-scroll-proportion="0.0" vertical-offset="1653" max-vertical-offset="9994">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -108,29 +102,16 @@
       <file leaf-file-name="CreateEventDialogFragment.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/myandroid/calendar/event/CreateEventDialogFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="200" column="32" selection-start="8201" selection-end="8201" vertical-scroll-proportion="0.70881224" vertical-offset="3430" max-vertical-offset="5852">
+            <state line="266" column="17" selection-start="10446" selection-end="10446" vertical-scroll-proportion="0.2394636" vertical-offset="4929" max-vertical-offset="5719">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4980#5246#0" expanded="true" />
-                <element signature="e#5227#5228#0" expanded="true" />
-                <element signature="e#5303#5776#0" expanded="true" />
-                <element signature="e#5757#5758#0" expanded="true" />
-                <element signature="e#7252#7886#0" expanded="true" />
-                <element signature="e#7863#7864#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="edit_event_simple.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/edit_event_simple.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="59" column="23" selection-start="2407" selection-end="2407" vertical-scroll-proportion="-11.185185" vertical-offset="819" max-vertical-offset="1330">
-              <folding>
-                <element signature="e#1212#1231#0" expanded="true" />
+                <element signature="e#2717#2730#0" expanded="true" />
+                <element signature="e#5072#5338#0" expanded="true" />
+                <element signature="e#5319#5320#0" expanded="true" />
+                <element signature="e#5395#5868#0" expanded="true" />
+                <element signature="e#5849#5850#0" expanded="true" />
+                <element signature="e#7612#8246#0" expanded="true" />
+                <element signature="e#8223#8224#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -139,7 +120,7 @@
       <file leaf-file-name="EditEventView.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/myandroid/calendar/event/EditEventView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="830" column="19" selection-start="34124" selection-end="34124" vertical-scroll-proportion="0.0" vertical-offset="1330" max-vertical-offset="30913">
+            <state line="1618" column="0" selection-start="67922" selection-end="68108" vertical-scroll-proportion="0.0" vertical-offset="28364" max-vertical-offset="30913">
               <folding />
             </state>
           </provider>
@@ -148,7 +129,7 @@
       <file leaf-file-name="EditEventFragment.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/myandroid/calendar/event/EditEventFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="674" column="64" selection-start="28370" selection-end="28393" vertical-scroll-proportion="0.0" vertical-offset="11264" max-vertical-offset="14972">
+            <state line="80" column="45" selection-start="3180" selection-end="3180" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="14972">
               <folding>
                 <element signature="e#0#34792#0" expanded="false" />
                 <element signature="imports" expanded="false" />
@@ -187,7 +168,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/res/values-zh-rCN/strings.xml" />
         <option value="$PROJECT_DIR$/res/values-zh-rTW/strings.xml" />
         <option value="$PROJECT_DIR$/res/values/dimens.xml" />
@@ -201,6 +181,7 @@
         <option value="$PROJECT_DIR$/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/src/com/myandroid/calendar/event/EditEventHelper.java" />
         <option value="$PROJECT_DIR$/src/com/myandroid/calendar/CalendarController.java" />
+        <option value="$PROJECT_DIR$/src/com/myandroid/common/Rfc822Validator.java" />
         <option value="$PROJECT_DIR$/res/layout/edit_event_simple.xml" />
         <option value="$PROJECT_DIR$/src/com/myandroid/calendar/event/CreateEventDialogFragment.java" />
       </list>
@@ -358,32 +339,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="myandroid" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="calendar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="alerts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Calendar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Calendar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="res" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -397,14 +352,14 @@
   <component name="PropertiesComponent">
     <property name="project.structure.last.edited" value="Modules" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="82" />
-    <property name="OverrideImplement.combined" value="true" />
-    <property name="project.structure.proportion" value="0.0" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="103" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="OverrideImplement.combined" value="true" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="96" />
-    <property name="MemberChooser.sorted" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="recentsLimit" value="5" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="96" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="117" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="896" />
@@ -420,8 +375,8 @@
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
     <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
@@ -619,12 +574,16 @@
       <created>1375236649667</created>
       <updated>1375236649667</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="modify">
+      <created>1375273926474</created>
+      <updated>1375273926474</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1288" height="979" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32851985" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -638,14 +597,14 @@
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3273165" sideWeight="0.54626626" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24837662" sideWeight="0.67749697" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24837662" sideWeight="0.67749697" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21428572" sideWeight="0.67749697" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21428572" sideWeight="0.67749697" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.322503" sideWeight="0.49837664" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -718,20 +677,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="167" column="40" selection-start="7812" selection-end="7835" vertical-scroll-proportion="0.70881224" vertical-offset="2803" max-vertical-offset="3325">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/myandroid/calendar/AsyncQueryService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="328" column="77" selection-start="13507" selection-end="13580" vertical-scroll-proportion="0.33333334" vertical-offset="5526" max-vertical-offset="7885">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/myandroid/calendar/event/EditEventActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="37" column="13" selection-start="1362" selection-end="1362" vertical-scroll-proportion="-1.7662835" vertical-offset="1036" max-vertical-offset="2318">
@@ -740,13 +685,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/edit_event_1.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state line="22" column="0" selection-start="912" selection-end="1663" vertical-scroll-proportion="0.070866145" vertical-offset="382" max-vertical-offset="6213">
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/myandroid/calendar/event/EditEventHelper.java">
@@ -777,9 +722,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://D:/adt-bundle-windows-x86/sdk/sources/android-16/android/provider/CalendarContract.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="153" column="42" selection-start="6329" selection-end="6329" vertical-scroll-proportion="0.33333334" vertical-offset="2087" max-vertical-offset="48564" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/myandroid/calendar/CalendarController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="252" column="29" selection-start="9941" selection-end="9941" vertical-scroll-proportion="0.697318" vertical-offset="4101" max-vertical-offset="15732">
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#3234#3270#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/myandroid/calendar/event/EditEventFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="674" column="64" selection-start="28370" selection-end="28393" vertical-scroll-proportion="0.0" vertical-offset="11264" max-vertical-offset="14972">
+        <state line="80" column="45" selection-start="3180" selection-end="3180" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="14972">
           <folding>
             <element signature="e#0#34792#0" expanded="false" />
             <element signature="imports" expanded="false" />
@@ -799,67 +759,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/adt-bundle-windows-x86/sdk/sources/android-16/android/provider/CalendarContract.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="153" column="42" selection-start="6329" selection-end="6329" vertical-scroll-proportion="0.33333334" vertical-offset="2087" max-vertical-offset="48564">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/myandroid/calendar/CalendarController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="252" column="29" selection-start="9941" selection-end="9941" vertical-scroll-proportion="0.697318" vertical-offset="4101" max-vertical-offset="15732">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3234#3270#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/adt-bundle-windows-x86/sdk/sources/android-16/android/widget/AbsSpinner.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="106" column="13" selection-start="3410" selection-end="3410" vertical-scroll-proportion="0.55172414" vertical-offset="1213" max-vertical-offset="8778">
+        <state line="136" column="16" selection-start="4298" selection-end="4298" vertical-scroll-proportion="0.91570884" vertical-offset="1593" max-vertical-offset="8778">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://D:/adt-bundle-windows-x86/sdk/sources/android-16/android/widget/Spinner.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="370" column="19" selection-start="13609" selection-end="13609" vertical-scroll-proportion="0.3697318" vertical-offset="6286" max-vertical-offset="17993">
+        <state line="463" column="24" selection-start="16478" selection-end="16490" vertical-scroll-proportion="0.4789272" vertical-offset="7996" max-vertical-offset="17993">
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/myandroid/common/Rfc822Validator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="32" selection-start="1207" selection-end="1207" vertical-scroll-proportion="0.109195404" vertical-offset="190" max-vertical-offset="2793">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/calendars_item.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.7480315" vertical-offset="380" max-vertical-offset="950">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/edit_event_simple.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="52" selection-start="1793" selection-end="1816" vertical-scroll-proportion="0.10826772" vertical-offset="819" max-vertical-offset="1330">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/myandroid/calendar/event/EditEventView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="830" column="19" selection-start="34124" selection-end="34124" vertical-scroll-proportion="0.0" vertical-offset="1330" max-vertical-offset="30913">
+        <state line="1618" column="0" selection-start="67922" selection-end="68108" vertical-scroll-proportion="0.0" vertical-offset="28364" max-vertical-offset="30913">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/edit_event_simple.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="23" selection-start="2407" selection-end="2407" vertical-scroll-proportion="-11.185185" vertical-offset="819" max-vertical-offset="1330">
-          <folding>
-            <element signature="e#1212#1231#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/myandroid/calendar/event/CreateEventDialogFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="200" column="32" selection-start="8201" selection-end="8201" vertical-scroll-proportion="0.70881224" vertical-offset="3430" max-vertical-offset="5852">
+        <state line="266" column="17" selection-start="10446" selection-end="10446" vertical-scroll-proportion="0.2394636" vertical-offset="4929" max-vertical-offset="5719">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4980#5246#0" expanded="true" />
-            <element signature="e#5227#5228#0" expanded="true" />
-            <element signature="e#5303#5776#0" expanded="true" />
-            <element signature="e#5757#5758#0" expanded="true" />
-            <element signature="e#7252#7886#0" expanded="true" />
-            <element signature="e#7863#7864#0" expanded="true" />
+            <element signature="e#2717#2730#0" expanded="true" />
+            <element signature="e#5072#5338#0" expanded="true" />
+            <element signature="e#5319#5320#0" expanded="true" />
+            <element signature="e#5395#5868#0" expanded="true" />
+            <element signature="e#5849#5850#0" expanded="true" />
+            <element signature="e#7612#8246#0" expanded="true" />
+            <element signature="e#8223#8224#0" expanded="true" />
           </folding>
         </state>
       </provider>

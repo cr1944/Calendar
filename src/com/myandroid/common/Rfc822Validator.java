@@ -30,7 +30,7 @@ import java.util.regex.Pattern;
  * and has the specified domain name added.  It is meant for use with
  * {@link Rfc822Token} and {@link Rfc822Tokenizer}.
  *
- * @deprecated In the future make sure we don't quietly alter the user's
+ * In the future make sure we don't quietly alter the user's
  *             text in ways they did not intend.  Meanwhile, hide this
  *             class from the public API because it does not even have
  *             a full understanding of the syntax it claims to correct.
