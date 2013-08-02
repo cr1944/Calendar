@@ -180,6 +180,7 @@
         <item name="android:backgroundSplit">@drawable/ab_bottom_solid_calendaractionbar</item>
     </style>
 
+
     <style name="CalendarTheme.WithActionBarWallpaper" parent="CalendarTheme.WithActionBar">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:colorBackgroundCacheHint">@null</item>

@@ -13,27 +13,66 @@
     </shared>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c878afe1-b79e-4637-a1b6-2fb6639a2892" name="Default" comment="">
-      <change type="DELETED" beforePath="D:\Calendar\res\drawable-hdpi\ab_bottom_solid_calendaractionbarstyle.9.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\Calendar\res\drawable-hdpi\ab_solid_calendaractionbarstyle.9.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\Calendar\res\drawable-hdpi\ab_stacked_solid_calendaractionbarstyle.9.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\Calendar\res\drawable-hdpi\ic_menu_today_holo_light.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\Calendar\res\drawable-mdpi\ab_bottom_solid_calendaractionbarstyle.9.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\Calendar\res\drawable-mdpi\ab_solid_calendaractionbarstyle.9.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\Calendar\res\drawable-mdpi\ab_stacked_solid_calendaractionbarstyle.9.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\Calendar\res\drawable-mdpi\ic_menu_today_holo_light.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\Calendar\res\drawable-sw600dp\ic_menu_today_holo_light.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\Calendar\res\drawable-xhdpi\ab_bottom_solid_calendaractionbarstyle.9.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\Calendar\res\drawable-xhdpi\ab_solid_calendaractionbarstyle.9.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\Calendar\res\drawable-xhdpi\ab_stacked_solid_calendaractionbarstyle.9.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\Calendar\res\drawable-xhdpi\ic_menu_today_holo_light.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/myandroid/calendar/AllInOneActivity.java" afterPath="$PROJECT_DIR$/src/com/myandroid/calendar/AllInOneActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/myandroid/calendar/CalendarController.java" afterPath="$PROJECT_DIR$/src/com/myandroid/calendar/CalendarController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/myandroid/calendar/DayOfMonthDrawable.java" afterPath="$PROJECT_DIR$/src/com/myandroid/calendar/DayOfMonthDrawable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/myandroid/calendar/SearchActivity.java" afterPath="$PROJECT_DIR$/src/com/myandroid/calendar/SearchActivity.java" />
+    <list default="true" id="c878afe1-b79e-4637-a1b6-2fb6639a2892" name="Default" comment="modify">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/ic_menu_add_event_holo_dark.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-mdpi/ic_menu_add_event_holo_dark.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/ic_menu_add_event_holo_dark.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/ic_menu_cancel_holo_dark.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-mdpi/ic_menu_cancel_holo_dark.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/ic_menu_cancel_holo_dark.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/ic_menu_done_holo_dark.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-mdpi/ic_menu_done_holo_dark.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/ic_menu_done_holo_dark.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/ic_menu_refresh_holo_dark.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-mdpi/ic_menu_refresh_holo_dark.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/ic_menu_refresh_holo_dark.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/ic_menu_search_holo_dark.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-mdpi/ic_menu_search_holo_dark.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/ic_menu_search_holo_dark.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/ic_menu_settings_holo_dark.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-mdpi/ic_menu_settings_holo_dark.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/ic_menu_settings_holo_dark.png" />
+      <change type="DELETED" beforePath="D:\Calendar\res\drawable-hdpi\ic_menu_add_event_holo_light.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\Calendar\res\drawable-hdpi\ic_menu_cancel_holo_light.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\Calendar\res\drawable-hdpi\ic_menu_compose_holo_light.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\Calendar\res\drawable-hdpi\ic_menu_done_holo_light.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\Calendar\res\drawable-hdpi\ic_menu_refresh_holo_light.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\Calendar\res\drawable-hdpi\ic_menu_search_holo_light.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\Calendar\res\drawable-hdpi\ic_menu_settings_holo_light.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\Calendar\res\drawable-hdpi\ic_menu_trash_holo_light.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\Calendar\res\drawable-mdpi\ic_menu_add_event_holo_light.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\Calendar\res\drawable-mdpi\ic_menu_cancel_holo_light.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\Calendar\res\drawable-mdpi\ic_menu_compose_holo_light.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\Calendar\res\drawable-mdpi\ic_menu_done_holo_light.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\Calendar\res\drawable-mdpi\ic_menu_refresh_holo_light.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\Calendar\res\drawable-mdpi\ic_menu_search_holo_light.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\Calendar\res\drawable-mdpi\ic_menu_settings_holo_light.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\Calendar\res\drawable-mdpi\ic_menu_trash_holo_light.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\Calendar\res\drawable-sw600dp\ic_menu_today_holo_dark.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\Calendar\res\drawable-xhdpi\ic_menu_add_event_holo_light.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\Calendar\res\drawable-xhdpi\ic_menu_cancel_holo_light.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\Calendar\res\drawable-xhdpi\ic_menu_compose_holo_light.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\Calendar\res\drawable-xhdpi\ic_menu_done_holo_light.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\Calendar\res\drawable-xhdpi\ic_menu_refresh_holo_light.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\Calendar\res\drawable-xhdpi\ic_menu_search_holo_light.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\Calendar\res\drawable-xhdpi\ic_menu_settings_holo_light.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\Calendar\res\drawable-xhdpi\ic_menu_trash_holo_light.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\Calendar\res\drawable-xxhdpi\ic_menu_today_holo_dark.png" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-hdpi/ic_menu_today_holo_dark.png" afterPath="$PROJECT_DIR$/res/drawable-hdpi/ic_menu_today_holo_dark.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-mdpi/ic_menu_today_holo_dark.png" afterPath="$PROJECT_DIR$/res/drawable-mdpi/ic_menu_today_holo_dark.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-xhdpi/ic_menu_today_holo_dark.png" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/ic_menu_today_holo_dark.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/menu/all_in_one_title_bar.xml" afterPath="$PROJECT_DIR$/res/menu/all_in_one_title_bar.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/menu-land/all_in_one_title_bar.xml" afterPath="$PROJECT_DIR$/res/menu-land/all_in_one_title_bar.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/menu-sw600dp/all_in_one_title_bar.xml" afterPath="$PROJECT_DIR$/res/menu-sw600dp/all_in_one_title_bar.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/menu-sw600dp-land/all_in_one_title_bar.xml" afterPath="$PROJECT_DIR$/res/menu-sw600dp-land/all_in_one_title_bar.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/chips/chips.iml" afterPath="$PROJECT_DIR$/chips/chips.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/colors.xml" afterPath="$PROJECT_DIR$/res/values/colors.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/edit_event_custom_actionbar.xml" afterPath="$PROJECT_DIR$/res/layout/edit_event_custom_actionbar.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/menu/edit_event_title_bar.xml" afterPath="$PROJECT_DIR$/res/menu/edit_event_title_bar.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/menu/event_info_title_bar.xml" afterPath="$PROJECT_DIR$/res/menu/event_info_title_bar.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/menu/search_title_bar.xml" afterPath="$PROJECT_DIR$/res/menu/search_title_bar.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/styles.xml" afterPath="$PROJECT_DIR$/res/values/styles.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable/today_icon.xml" afterPath="$PROJECT_DIR$/res/drawable/today_icon.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Calendar.iws" />
@@ -110,25 +149,7 @@
       <file leaf-file-name="AllInOneActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/myandroid/calendar/AllInOneActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="745" column="20" selection-start="30851" selection-end="30851" vertical-scroll-proportion="0.0" vertical-offset="12103" max-vertical-offset="23294">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Utils.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/myandroid/calendar/Utils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1410" column="5" selection-start="60999" selection-end="60999" vertical-scroll-proportion="0.0" vertical-offset="25590" max-vertical-offset="27284">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="all_in_one_title_bar.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/res/menu/all_in_one_title_bar.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="13" selection-start="690" selection-end="690" vertical-scroll-proportion="0.24859813" vertical-offset="190" max-vertical-offset="1178">
+            <state line="750" column="35" selection-start="30959" selection-end="30959" vertical-scroll-proportion="0.0" vertical-offset="12426" max-vertical-offset="23294">
               <folding />
             </state>
           </provider>
@@ -137,7 +158,36 @@
       <file leaf-file-name="styles.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/values/styles.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="182" column="41" selection-start="7990" selection-end="7990" vertical-scroll-proportion="0.0" vertical-offset="3189" max-vertical-offset="4978">
+            <state line="161" column="12" selection-start="6909" selection-end="6909" vertical-scroll-proportion="0.0" vertical-offset="2909" max-vertical-offset="4997">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="all_in_one_title_bar.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/menu/all_in_one_title_bar.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="41" column="46" selection-start="1668" selection-end="1668" vertical-scroll-proportion="0.0" vertical-offset="660" max-vertical-offset="1178">
+              <folding>
+                <element signature="e#1873#1912#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="all_in_one_title_bar.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/res/menu-sw600dp-land/all_in_one_title_bar.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="7" selection-start="242" selection-end="242" vertical-scroll-proportion="0.18339768" vertical-offset="0" max-vertical-offset="1121">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="colors.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/values/colors.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="28" column="33" selection-start="960" selection-end="976" vertical-scroll-proportion="0.0" vertical-offset="190" max-vertical-offset="3325">
               <folding />
             </state>
           </provider>
@@ -179,30 +229,28 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/com/myandroid/calendar/event/SimpleEditEventDialog.java" />
-        <option value="$PROJECT_DIR$/src/com/myandroid/calendar/month/MonthByWeekFragment.java" />
-        <option value="$PROJECT_DIR$/src/com/myandroid/calendar/month/MonthListView.java" />
-        <option value="$PROJECT_DIR$/src/com/myandroid/calendar/month/MonthByWeekAdapter.java" />
-        <option value="$PROJECT_DIR$/res/values/colors.xml" />
-        <option value="$PROJECT_DIR$/src/com/myandroid/calendar/event/EditEventHelper.java" />
-        <option value="$PROJECT_DIR$/src/com/myandroid/common/Rfc822Validator.java" />
-        <option value="$PROJECT_DIR$/res/layout/edit_event_simple.xml" />
-        <option value="$PROJECT_DIR$/src/com/myandroid/calendar/event/CreateEventDialogFragment.java" />
-        <option value="$PROJECT_DIR$/src/com/myandroid/calendar/CalendarController.java" />
-        <option value="$PROJECT_DIR$/src/com/myandroid/calendar/AllInOneActivity.java" />
-        <option value="$PROJECT_DIR$/src/com/myandroid/calendar/SearchActivity.java" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/res/drawable/today_icon.xml" />
         <option value="$PROJECT_DIR$/src/com/myandroid/calendar/DayOfMonthDrawable.java" />
+        <option value="$PROJECT_DIR$/res/layout/actionbar_pulldown_menu_top_button.xml" />
+        <option value="$PROJECT_DIR$/res/drawable/selectable_background_calendar.xml" />
+        <option value="$PROJECT_DIR$/res/drawable/pressed_background_calendar.xml" />
+        <option value="$PROJECT_DIR$/res/values/colors.xml" />
+        <option value="$PROJECT_DIR$/res/values/styles.xml" />
+        <option value="$PROJECT_DIR$/res/menu/edit_event_title_bar.xml" />
+        <option value="$PROJECT_DIR$/res/layout/edit_event_custom_actionbar.xml" />
+        <option value="$PROJECT_DIR$/res/menu/event_info_title_bar.xml" />
+        <option value="$PROJECT_DIR$/res/menu/all_in_one_title_bar.xml" />
+        <option value="$PROJECT_DIR$/res/menu-land/all_in_one_title_bar.xml" />
+        <option value="$PROJECT_DIR$/res/menu-sw600dp/all_in_one_title_bar.xml" />
+        <option value="$PROJECT_DIR$/res/menu-sw600dp-land/all_in_one_title_bar.xml" />
+        <option value="$PROJECT_DIR$/res/menu/search_title_bar.xml" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-4" />
-    <option name="y" value="-4" />
-    <option name="width" value="1288" />
-    <option name="height" value="979" />
+    <option name="width" value="1280" />
+    <option name="height" value="971" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -231,7 +279,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -290,105 +337,22 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Calendar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Calendar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="myandroid" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="calendar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="month" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Calendar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Calendar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="myandroid" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="calendar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="event" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Calendar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Calendar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Calendar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Calendar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="menu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="project.structure.last.edited" value="Modules" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="82" />
-    <property name="OverrideImplement.combined" value="true" />
-    <property name="project.structure.proportion" value="0.0" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="103" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="OverrideImplement.combined" value="true" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="96" />
-    <property name="MemberChooser.sorted" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="recentsLimit" value="5" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="96" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="117" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="896" />
@@ -398,19 +362,18 @@
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="AVD_for_Nexus_7_by_Google" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
     <property name="FullScreen" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
     <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
-    <property name="options.lastSelected" value="IntelliLang.Configuration" />
-    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Font" />
+    <property name="project.structure.side.proportion" value="0.26071844" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="016B7E950E006013" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
@@ -418,11 +381,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Calendar\res\drawable" />
+      <recent name="D:\Calendar\res\drawable-hdpi" />
+      <recent name="D:\Calendar\res\drawable-mdpi" />
+      <recent name="D:\Calendar\res\drawable-xhdpi" />
       <recent name="D:\Calendar\res\layout" />
-      <recent name="D:\Calendar\res\values" />
-      <recent name="D:\Calendar\src\com\myandroid\calendar\lunar" />
-      <recent name="D:\GitHub\Calendar\res\drawable-xhdpi" />
-      <recent name="D:\GitHub\Calendar\res\drawable-mdpi" />
     </key>
   </component>
   <component name="RunManager" selected="Android Application.Calendar">
@@ -611,36 +574,44 @@
       <created>1375325981658</created>
       <updated>1375325981658</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="modify">
+      <created>1375360873832</created>
+      <updated>1375360873832</updated>
+    </task>
+    <task id="LOCAL-00010" summary="modify">
+      <created>1375360963785</created>
+      <updated>1375360963785</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1288" height="979" extended-state="6" />
+    <frame x="0" y="0" width="1280" height="971" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32851985" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3299532" sideWeight="0.67079645" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39951864" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.322503" sideWeight="0.5016234" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32515338" sideWeight="0.50164205" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32932693" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32851985" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3273165" sideWeight="0.54626626" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32638037" sideWeight="0.52052546" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24837662" sideWeight="0.67749697" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21428572" sideWeight="0.67749697" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.322503" sideWeight="0.49837664" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24958949" sideWeight="0.67484665" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32515338" sideWeight="0.49835795" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3299532" sideWeight="0.67079645" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -710,110 +681,124 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/res/layout/edit_event_simple.xml">
+    <entry file="file://$PROJECT_DIR$/src/com/myandroid/calendar/selectcalendars/SelectCalendarsSyncFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="52" selection-start="1793" selection-end="1816" vertical-scroll-proportion="0.10826772" vertical-offset="819" max-vertical-offset="1330" />
+        <state line="18" column="29" selection-start="699" selection-end="699" vertical-scroll-proportion="0.3294347" vertical-offset="173" max-vertical-offset="3819">
+          <folding>
+            <element signature="e#0#7537#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/actionbar_pulldown_menu_top_button.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="33" selection-start="1137" selection-end="1137" vertical-scroll-proportion="0.11717172" vertical-offset="455" max-vertical-offset="950">
+          <folding />
+        </state>
       </provider>
       <provider editor-type-id="android-designer">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/myandroid/calendar/event/EditEventView.java">
+    <entry file="file://$PROJECT_DIR$/src/com/myandroid/calendar/CalendarViewAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1618" column="0" selection-start="67922" selection-end="68108" vertical-scroll-proportion="0.0" vertical-offset="28364" max-vertical-offset="30913">
+        <state line="253" column="63" selection-start="9013" selection-end="9013" vertical-scroll-proportion="3.5185184" vertical-offset="2375" max-vertical-offset="8873">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/myandroid/calendar/event/CreateEventDialogFragment.java">
+    <entry file="file://$PROJECT_DIR$/res/values/colors.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="263" column="11" selection-start="10358" selection-end="10358" vertical-scroll-proportion="0.0" vertical-offset="4739" max-vertical-offset="5719">
+        <state line="28" column="33" selection-start="960" selection-end="976" vertical-scroll-proportion="0.0" vertical-offset="190" max-vertical-offset="3325">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/myandroid/calendar/SearchActivity.java">
+    <entry file="file://$PROJECT_DIR$/res/layout/edit_event_custom_actionbar.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="263" column="20" selection-start="10114" selection-end="10114" vertical-scroll-proportion="0.14864865" vertical-offset="4046" max-vertical-offset="6460">
+        <state line="24" column="49" selection-start="1034" selection-end="1034" vertical-scroll-proportion="0.13786009" vertical-offset="389" max-vertical-offset="1140">
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="129" column="50" selection-start="6487" selection-end="6487" vertical-scroll-proportion="0.44208494" vertical-offset="2222" max-vertical-offset="4408">
-          <folding />
-        </state>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/values/styles.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="182" column="41" selection-start="7990" selection-end="7990" vertical-scroll-proportion="0.0" vertical-offset="3189" max-vertical-offset="4978">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/myandroid/calendar/CalendarController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="678" column="5" selection-start="26680" selection-end="26680" vertical-scroll-proportion="0.14559387" vertical-offset="11818" max-vertical-offset="14782">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/myandroid/calendar/AllInOneActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="745" column="20" selection-start="30851" selection-end="30851" vertical-scroll-proportion="0.0" vertical-offset="12103" max-vertical-offset="23294">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/myandroid/calendar/DayView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="339" column="7" selection-start="12974" selection-end="12974" vertical-scroll-proportion="0.0" vertical-offset="6422" max-vertical-offset="96634">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/myandroid/calendar/month/MonthByWeekFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="88" column="26" selection-start="3447" selection-end="3447" vertical-scroll-proportion="0.0" vertical-offset="1653" max-vertical-offset="9994">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/adt-bundle-windows-x86/sdk/platforms/android-16/android.jar!/android/R.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="874" column="32" selection-start="57127" selection-end="57127" vertical-scroll-proportion="1.0613027" vertical-offset="16033" max-vertical-offset="36670">
+        <state line="161" column="12" selection-start="6909" selection-end="6909" vertical-scroll-proportion="0.0" vertical-offset="2909" max-vertical-offset="4997">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/drawable/today_icon.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="40" selection-start="948" selection-end="948" vertical-scroll-proportion="0.64218456" vertical-offset="77" max-vertical-offset="608">
+        <state line="16" column="40" selection-start="711" selection-end="711" vertical-scroll-proportion="0.43822393" vertical-offset="77" max-vertical-offset="608">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/myandroid/calendar/DayOfMonthDrawable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="36" selection-start="1459" selection-end="1459" vertical-scroll-proportion="0.6532567" vertical-offset="191" max-vertical-offset="1311">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/myandroid/calendar/Utils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1410" column="5" selection-start="60999" selection-end="60999" vertical-scroll-proportion="0.0" vertical-offset="25590" max-vertical-offset="27284">
+        <state line="1414" column="21" selection-start="61114" selection-end="61114" vertical-scroll-proportion="0.18849206" vertical-offset="25631" max-vertical-offset="27284">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/myandroid/calendar/AllInOneActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="750" column="35" selection-start="30959" selection-end="30959" vertical-scroll-proportion="0.0" vertical-offset="12426" max-vertical-offset="23294">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/menu/edit_event_title_bar.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="56" selection-start="924" selection-end="924" vertical-scroll-proportion="0.4864865" vertical-offset="147" max-vertical-offset="665">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/menu/event_info_title_bar.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="38" selection-start="595" selection-end="595" vertical-scroll-proportion="0.07335907" vertical-offset="190" max-vertical-offset="741">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/menu-land/all_in_one_title_bar.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="54" column="58" selection-start="2266" selection-end="2266" vertical-scroll-proportion="0.6988417" vertical-offset="664" max-vertical-offset="1273">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/menu-sw600dp/all_in_one_title_bar.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="58" selection-start="2084" selection-end="2084" vertical-scroll-proportion="0.7065637" vertical-offset="603" max-vertical-offset="1121">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/menu/all_in_one_title_bar.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="13" selection-start="690" selection-end="690" vertical-scroll-proportion="0.24859813" vertical-offset="190" max-vertical-offset="1178">
+        <state line="41" column="46" selection-start="1668" selection-end="1668" vertical-scroll-proportion="0.0" vertical-offset="660" max-vertical-offset="1178">
+          <folding>
+            <element signature="e#1873#1912#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/menu/search_title_bar.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="42" selection-start="450" selection-end="450" vertical-scroll-proportion="-0.2104247" vertical-offset="299" max-vertical-offset="817">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/menu-sw600dp-land/all_in_one_title_bar.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="7" selection-start="242" selection-end="242" vertical-scroll-proportion="0.18339768" vertical-offset="0" max-vertical-offset="1121">
           <folding />
         </state>
       </provider>
@@ -858,11 +843,11 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>Android SDK</last-edited>
+          <last-edited>Android 4.3 Platform</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.26071844" />
               </list>
             </option>
           </splitter-proportions>
@@ -874,7 +859,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.26071844" />
               </list>
             </option>
           </splitter-proportions>

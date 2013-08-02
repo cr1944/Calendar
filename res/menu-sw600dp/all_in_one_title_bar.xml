@@ -27,17 +27,17 @@
         android:alphabeticShortcut="n"
         android:showAsAction="ifRoom"
         android:title="@string/event_create"
-        android:icon="@drawable/ic_menu_add_event_holo_light" />
+        android:icon="@drawable/ic_menu_add_event_holo_dark" />
     <item
         android:id="@+id/action_refresh"
         android:alphabeticShortcut="r"
         android:title="@string/calendar_refresh"
-        android:icon="@drawable/ic_menu_refresh_holo_light" />
+        android:icon="@drawable/ic_menu_refresh_holo_dark" />
     <item
         android:id="@+id/action_search"
         android:alphabeticShortcut="f"
         android:title="@string/search"
-        android:icon="@drawable/ic_menu_search_holo_light"
+        android:icon="@drawable/ic_menu_search_holo_dark"
         android:showAsAction="collapseActionView"
         android:actionViewClass="android.widget.SearchView"
         android:imeOptions="actionSearch" />
@@ -49,5 +49,5 @@
         android:id="@+id/action_settings"
         android:alphabeticShortcut="s"
         android:title="@string/menu_preferences"
-        android:icon="@drawable/ic_menu_settings_holo_light" />
+        android:icon="@drawable/ic_menu_settings_holo_dark" />
 </menu>
