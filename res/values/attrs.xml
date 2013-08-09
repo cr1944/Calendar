@@ -18,4 +18,19 @@
     <!-- MultiStateButton doesn't define any special attributes -->
     <declare-styleable name="com.android.calendar.MultiStateButton">
     </declare-styleable>
+    <attr name="lunarDatePickerStyle" format="reference" />
+    <declare-styleable name="LunarDatePicker">
+        <!-- The first year (inclusive), for example "1940".
+             {@deprecated Use minDate instead.}
+         -->
+        <attr name="startYear" format="integer" />
+        <!-- The last year (inclusive), for example "2010".
+             {@deprecated Use maxDate instead.}
+         -->
+        <attr name="endYear" format="integer" />
+        <!-- The minimal date shown by this calendar view in mm/dd/yyyy format. -->
+        <attr name="minDate" format="string" />
+        <!-- The minimal date shown by this calendar view in mm/dd/yyyy format. -->
+        <attr name="maxDate" format="string" />
+    </declare-styleable>
 </resources>

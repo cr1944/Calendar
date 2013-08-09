@@ -65,6 +65,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.accessibility.AccessibilityEvent;
+import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
@@ -757,11 +758,10 @@ public class AllInOneActivity extends Activity implements EventHandler,
                 mController.refreshCalendars();
                 return true;
             case R.id.action_today:
-                viewType = ViewType.CURRENT;
                 t = new Time(mTimeZone);
                 t.setToNow();
-                extras |= CalendarController.EXTRA_GOTO_TODAY;
-                break;
+                showDatePickerDialog(t);
+                return true;
             case R.id.action_create_event:
                 t = new Time();
                 t.set(mController.getTime());
@@ -802,8 +802,22 @@ public class AllInOneActivity extends Activity implements EventHandler,
             default:
                 return false;
         }
-        mController.sendEvent(this, EventType.GO_TO, t, null, t, -1, viewType, extras, null, null);
-        return true;
+    }
+
+    private void showDatePickerDialog(Time t) {
+        DatePickerDialog.OnDateSetListener l = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                int viewType = ViewType.CURRENT;
+                Time t = new Time(mTimeZone);
+                t.set(dayOfMonth, monthOfYear, year);
+                long extras = CalendarController.EXTRA_GOTO_TIME | CalendarController.EXTRA_GOTO_TODAY;
+                mController.sendEvent(AllInOneActivity.this, EventType.GO_TO, t, null, t, -1, viewType, extras, null, null);
+            }
+        };
+        DatePickerDialog dpd = new DatePickerDialog(this, l, t.year, t.month, t.monthDay);
+        dpd.setCanceledOnTouchOutside(true);
+        dpd.show();
     }
 
     /**

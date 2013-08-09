@@ -221,4 +221,6 @@
   </plurals>
     <string name="acessibility_selected_marker_description" msgid="3010149843148810768">"選取的活動"</string>
     <string name="do_not_check" msgid="7815441673853466129">"請勿勾選 -&gt;"</string>
+    <string name="goto_day">日期跳轉</string>
+    <string name="goto_special_day">特別日</string>
 </resources>

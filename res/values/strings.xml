@@ -653,5 +653,7 @@
     <string name="lunar_month" translatable="false">月</string>
     <string name="lunar_day" translatable="false">日</string>
     <string name="lunar_date_formatter">yyyy年MM月dd日</string>
+    <string name="goto_day">Goto Day</string>
+    <string name="goto_special_day">Special Day</string>
 
 </resources>
